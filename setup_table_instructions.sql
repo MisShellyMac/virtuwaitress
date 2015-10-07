@@ -1,11 +1,20 @@
-CREATE TABLE weather (
-     id SERIAL PRIMARY KEY,
-     city            varchar(80),
-     temp_lo         int,           -- low temperature
-     temp_hi         int,           -- high temperature
-     prcp            real,          -- precipitation
-     date            date,
-     UNIQUE(city, date)
+DROP TABLE IF EXISTS food;
+CREATE TABLE food (
+     id               serial PRIMARY KEY,
+     title            text,
+     price            int,
+     active           boolean,
+     vegan            boolean,
+     vegetarian       boolean,
+     category         text,
+     gluten_free      boolean,
+     description      text
  );
 
-COPY weather(city, temp_lo, temp_hi, prcp, date) FROM '/Users/MisShellyMac/ada/virtuwaitress/weather.txt' WITH DELIMITER ',' ;
+COPY food(title, price, active, vegan, vegetarian, category, gluten_free, description) FROM '/Users/MisShellyMac/ada/virtuwaitress/dessert.csv' WITH DELIMITER ',' CSV  ;
+
+COPY food(title, price, active, vegan, vegetarian, category, gluten_free, description) FROM '/Users/MisShellyMac/ada/virtuwaitress/entree.csv' WITH DELIMITER ',' CSV  ;
+
+COPY food(title, price, active, vegan, vegetarian, category, gluten_free, description) FROM '/Users/MisShellyMac/ada/virtuwaitress/appetizer.csv' WITH DELIMITER ',' CSV  ;
+
+COPY food(title, price, active, vegan, vegetarian, category, gluten_free, description) FROM '/Users/MisShellyMac/ada/virtuwaitress/salad.csv' WITH DELIMITER ',' CSV  ;
