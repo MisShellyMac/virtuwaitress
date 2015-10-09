@@ -1,29 +1,35 @@
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
-var conString = 'postgress://localhost/testdb';
+var conString = 'pg://localhost:5432/virtuwaitress';
 
 var client = new pg.Client(conString);
-client.connect(function(err) {
-  if(err) {
-    return console.error('could not connect to postgres', err);
-  }
-  client.query('SELECT NOW() AS "theTime"', function(err, result) {
-    if(err) {
-      return console.error('error running query', err);
+client.connect(
+  function(err, client, done) {
+    if (err) {
+      return console.error('could not connect to postgres', err);
     }
-    console.log(result.rows[0].theTime);
-    //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
-    // client.end();
-  });
-});
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  client.query('SELECT * FROM weather', function(err, rows){
-  res.render('index', { title: rows['rows'][0]['city'] });
-  });
-});
 
+    client.query('SELECT NOW() AS "theTime"',
+      function(err, result) {
+        if(err) {
+          return console.error('error running query', err);
+        }
+        console.log("CONNECTED: " + result.rows[0].theTime);
+        client.end();
+    });
 
+    /* GET home page. */
+    router.get('/', function(req, res, next) {
+      /*
+      client.query('SELECT * from food',
+        function(err, result) {
+          res.status(200).json(result.rows);
+        });
+      */
+      res.status(200).json([]);
+    });
+
+  });
 
 module.exports = router;
