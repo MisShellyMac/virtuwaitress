@@ -6,7 +6,7 @@
     "start": "nodemon ./bin/www",
     "test": "clear; DB=test mocha --recursive;",
     "nyan": "clear; DB=test mocha --recursive -R nyan;",
-    "reset": "node ./utils/wip",
+    "reset": "node ./utils/schema",
     "setup": "npm run reset; DB=test npm run reset"
   },
   "dependencies": {
