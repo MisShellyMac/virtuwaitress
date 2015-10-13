@@ -18,18 +18,9 @@ client.connect(
         console.log("CONNECTED: " + result.rows[0].theTime);
         client.end();
     });
+  });
 
     /* GET home page. */
-    router.get('/', function(req, res, next) {
-      /*
-      client.query('SELECT * from food',
-        function(err, result) {
-          res.status(200).json(result.rows);
-        });
-      */
-      res.status(200).json([]);
-    });
 
-  });
 
 module.exports = router;

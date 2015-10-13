@@ -9,7 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var food = require('./routes/food');
 var drink = require('./routes/drink');
-var app = express();
+var app = require('express')();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,6 +27,12 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/food', food);
 app.use('/drink', drink);
+app.use('/css', express.static(path.join(__dirname, 'virtuwaitress-frontend', 'css')));
+app.use('/font-awesome', express.static(path.join(__dirname, 'virtuwaitress-frontend', 'font-awesome')));
+app.use('/fonts', express.static(path.join(__dirname, 'virtuwaitress-frontend', 'fonts')));
+app.use('/img', express.static(path.join(__dirname, 'virtuwaitress-frontend', 'img')));
+app.use('/js', express.static(path.join(__dirname, 'virtuwaitress-frontend', 'js')));
+app.use('/mail', express.static(path.join(__dirname, 'virtuwaitress-frontend', 'mail')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
