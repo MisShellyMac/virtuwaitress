@@ -58,13 +58,6 @@ app.use('/drink', drink);
 // load the login-related routes and pass in our app and fully configured passport
 require('./routes/loginRoutes.js')(app, passport);
 
-app.use('/css', express.static(path.join(__dirname, 'virtuwaitress-frontend', 'css')));
-app.use('/font-awesome', express.static(path.join(__dirname, 'virtuwaitress-frontend', 'font-awesome')));
-app.use('/fonts', express.static(path.join(__dirname, 'virtuwaitress-frontend', 'fonts')));
-app.use('/img', express.static(path.join(__dirname, 'virtuwaitress-frontend', 'img')));
-app.use('/js', express.static(path.join(__dirname, 'virtuwaitress-frontend', 'js')));
-app.use('/mail', express.static(path.join(__dirname, 'virtuwaitress-frontend', 'mail')));
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
