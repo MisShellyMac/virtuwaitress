@@ -2,7 +2,9 @@
 
 var pg = require('pg');
 var conString = 'pg://localhost:5432/virtuwaitress';
-
+function Drink() {
+  this.table_name = "drink";
+}
 
 module.exports = {
 
@@ -88,3 +90,5 @@ module.exports = {
   },
 
 };
+
+module.exports = Drink
