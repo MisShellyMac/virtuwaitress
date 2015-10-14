@@ -5,28 +5,60 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var pg = require('pg');
-var routes = require('./routes/index');
+var index = require('./routes/index');
 var users = require('./routes/users');
 var food = require('./routes/food');
 var drink = require('./routes/drink');
 var app = require('express')();
 
+// For login
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash    = require('connect-flash');
+console.log("flash = " + flash);
+var configDB = require('./config/database.js');
+var morgan   = require('morgan');
+var session  = require('express-session');
+
+// Connect to the login database
+mongoose.connect(configDB.url);
+require('./config/passport')(passport); // pass passport for configuration
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//TODO: We're using ejs due to login pages: app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+//TODO: app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+
+// For login:
+//TODO: app.use(morgan('dev')); // log every request to the console
+//TODO: app.use(cookieParser()); // read cookies (needed for auth)
+//TODO: app.use(bodyParser.json()); // get information from html forms
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.set('view engine', 'ejs'); // set up ejs for templating
+
+// required for passport
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+
+app.use('/', index);
 app.use('/users', users);
 app.use('/food', food);
 app.use('/drink', drink);
+// load the login-related routes and pass in our app and fully configured passport
+require('./routes/loginRoutes.js')(app, passport);
+
 app.use('/css', express.static(path.join(__dirname, 'virtuwaitress-frontend', 'css')));
 app.use('/font-awesome', express.static(path.join(__dirname, 'virtuwaitress-frontend', 'font-awesome')));
 app.use('/fonts', express.static(path.join(__dirname, 'virtuwaitress-frontend', 'fonts')));
@@ -61,7 +93,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: {}
+    error: err //TODO: {}
   });
 });
 
