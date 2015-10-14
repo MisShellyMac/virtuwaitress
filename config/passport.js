@@ -1,15 +1,15 @@
 // config/passport.js
 
 // load all the things we need
-var LocalStrategy   = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 
 // load up the user model
-var User       		= require('../models/user');
+var users = require('../models/users');
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
 
-	// =========================================================================
+	  // =========================================================================
     // passport session setup ==================================================
     // =========================================================================
     // required for persistent login sessions
@@ -22,7 +22,7 @@ module.exports = function(passport) {
 
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
+        users.findById(id, function(err, user) {
             done(err, user);
         });
     });
@@ -43,7 +43,10 @@ module.exports = function(passport) {
 
 		// find a user whose email is the same as the forms email
 		// we are checking to see if the user trying to login already exists
-        User.findOne({ 'local.email' :  email }, function(err, user) {
+        users.findOne(email, function(err, user) {
+
+            // TODO: NEED TO FIX SIGNUP FOR POSTGRES
+
             // if there are any errors, return the error
             if (err)
                 return done(err);
@@ -89,7 +92,7 @@ module.exports = function(passport) {
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        User.findOne({ 'local.email' :  email }, function(err, user) {
+        users.findOne(email, function(err, user) {
             // if there are any errors, return the error before anything else
             if (err)
                 return done(err);
@@ -99,7 +102,7 @@ module.exports = function(passport) {
                 return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
 
             // if the user is found but the password is wrong
-            if (!user.validPassword(password))
+            if (!users.isValidPassword(password, user.password))
                 return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
 
             // all is well, return successful user

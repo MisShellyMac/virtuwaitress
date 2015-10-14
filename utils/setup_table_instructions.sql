@@ -33,3 +33,12 @@ CREATE TABLE drink (
  );
 
  COPY drink(title, price, active, vegan, vegetarian, category, gluten_free, description) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/drink.csv' WITH DELIMITER ',' CSV  ;
+
+ DROP TABLE IF EXISTS users;
+ CREATE TABLE users (
+      id               serial PRIMARY KEY,
+      username         text,
+      password         text
+  );
+
+  COPY users(username, password) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/users.csv' WITH DELIMITER ',' CSV  ;

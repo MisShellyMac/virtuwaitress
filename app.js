@@ -12,15 +12,11 @@ var drink = require('./routes/drink');
 var app = require('express')();
 
 // For login
-var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
-var configDB = require('./config/database.js');
 var morgan   = require('morgan');
 var session  = require('express-session');
 
-// Connect to the login database
-mongoose.connect(configDB.url);
 require('./config/passport')(passport); // pass passport for configuration
 
 // view engine setup
