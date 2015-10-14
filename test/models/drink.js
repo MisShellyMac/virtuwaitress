@@ -1,17 +1,24 @@
-var assert = require('assert'),
-    Drink = require('../../models/drink'),
-    pg = require('pg');
+"use strict";
 
-describe("Drink", function() {
-    var drink, db_cleaner
+var assert = require('assert'),
+    pg = require('pg'),
+    drink = require('../../models/drink');
+
+var conString = 'pg://localhost:5432/virtuwaitress';
+function Drink() {
+  this.table_name = "drink";
+}
+
+describe("Drink Model", function() {
+    var drink;
+    var db_cleaner;
 
     beforeEach(function(done) {
-      drink = new Drink();
-
+      drink = new drink();
       db_cleaner = new pg.Database('db/test.db');
       db_cleaner.serialize(function() {
         db_cleaner.exec(
-          "BEGIN; \
+          "BEGIN TRANSACTION; \
           DELETE FROM drink; \
           INSERT INTO drink(title, price, active, vegan, vegetarian, category, gluten_free, description) \
           VALUES('beer', 6, TRUE, FALSE, TRUE, 'Dessert', FALSE, 'hops and ale yumminess'), \
@@ -19,21 +26,24 @@ describe("Drink", function() {
                 ('cosmo', 6, TRUE, FALSE, TRUE, 'Dessert', FALSE, 'Fruity and sweet'),\
                 ('vodka soda', 6, TRUE, FALSE, TRUE, 'Dessert', FALSE, 'with lime'), \
                 ('choc martini', 6, TRUE, FALSE, TRUE, 'Dessert', FALSE, 'Chocolate yumminess'); \
-          COMMIT;"
-          , function(err) {
-            db_cleaner.close();
-            done();
-        }
-      );
+          COMMIT TRANSACTION;"
+        };
       })
+
+      db_cleaner.close(function() {
+        done();
+      });
+
     });
+
 });
 
-  it("can be instantiated", function() {
-    assert(drink instanceof Drink);
-  })
-
   describe("instance methods", function() {
+
+    it("can be instantiated", function() {
+    assert(drink instanceof Drink);
+    });
+
     it("can find all drinks", function(done) {
       drink.all(function(err, res) {
         assert.equal(err, undefined);
