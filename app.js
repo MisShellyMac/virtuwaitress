@@ -15,7 +15,6 @@ var app = require('express')();
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
-console.log("flash = " + flash);
 var configDB = require('./config/database.js');
 var morgan   = require('morgan');
 var session  = require('express-session');

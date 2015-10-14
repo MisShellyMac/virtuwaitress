@@ -2,10 +2,12 @@
 module.exports = function(app, passport) {
 
     // =====================================
-    // ADMIN PAGE (with login links) ========
+    // ADMIN PAGE
     // =====================================
-    app.get('/admin', function(req, res) {
-        res.render('admin.ejs'); // load the index.ejs file
+    app.get('/admin', isLoggedIn, function(req, res) {
+      res.render('dashboard.ejs', {
+          user : req.user // get the user out of session and pass to template
+      });
     });
 
     // =====================================
@@ -19,16 +21,16 @@ module.exports = function(app, passport) {
 
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile', // redirect to the secure profile section
+        successRedirect : '/admin', // redirect to the secure dashboard section
         failureRedirect : '/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
-    // app.post('/login', do all our passport stuff here);
 
     // =====================================
     // SIGNUP ==============================
     // =====================================
     // show the signup form
+    /* TODO: Disable
     app.get('/signup', function(req, res) {
 
         // render the page and pass in any flash data if it exists
@@ -37,22 +39,11 @@ module.exports = function(app, passport) {
 
     // process the signup form
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/profile', // redirect to the secure profile section
+        successRedirect : '/admin', // redirect to the secure dashboard section
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
-    // app.post('/signup', do all our passport stuff here);
-
-    // =====================================
-    // PROFILE SECTION =====================
-    // =====================================
-    // we will want this protected so you have to be logged in to visit
-    // we will use route middleware to verify this (the isLoggedIn function)
-    app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
-            user : req.user // get the user out of session and pass to template
-        });
-    });
+    */
 
     // =====================================
     // LOGOUT ==============================
@@ -71,5 +62,5 @@ function isLoggedIn(req, res, next) {
         return next();
 
     // if they aren't redirect them to the home page
-    res.redirect('/');
+    res.redirect('/login');
 }
