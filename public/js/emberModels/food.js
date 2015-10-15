@@ -1,10 +1,12 @@
 App.Food = DS.Model.extend({
   title: DS.attr('string'),
-  price: DS.attr('string'),
-  active: DS.attr('string'),
-  vegan: DS.attr('string'),
-  vegetarian: DS.attr('string'),
+  price: DS.attr('number'),
+  active: DS.attr('boolean'),
+  vegan: DS.attr('boolean'),
+  vegetarian: DS.attr('boolean'),
   category: DS.attr('string'),
-  gluten_free: DS.attr('string'),
-  description: DS.attr('string')
+  gluten_free: DS.attr('boolean'),
+  description: DS.attr('string'),
+  avg_rating: DS.attr('number'),
+  image_url: DS.attr('string')
 });

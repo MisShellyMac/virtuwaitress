@@ -13,7 +13,7 @@ module.exports = {
           console.error('could not connect to postgres', err);
           res.status(500).json(err);
         }
-        client.query('SELECT * from food',
+        client.query('SELECT * from menu_items',
           function(err, result) {
             if (err) {
               console.error('error running query', err);
@@ -33,7 +33,7 @@ module.exports = {
           console.error('could not connect to postgres', err);
           res.status(500).json(err);
         }
-        client.query('SELECT * from food where gluten_free = true',
+        client.query('SELECT * from menu_items where gluten_free = true',
           function(err, result) {
             if (err) {
               console.error('error running query', err);
@@ -53,7 +53,7 @@ module.exports = {
           console.error('could not connect to postgres', err);
           res.status(500).json(err);
         }
-        client.query('SELECT * from food where vegan = true',
+        client.query('SELECT * from menu_items where vegan = true',
           function(err, result) {
             if (err) {
               console.error('error running query', err);
@@ -73,7 +73,7 @@ module.exports = {
           console.error('could not connect to postgres', err);
           res.status(500).json(err);
         }
-        client.query('SELECT * from food where vegetarian = true',
+        client.query('SELECT * from menu_items where vegetarian = true',
           function(err, result) {
             if (err) {
               console.error('error running query', err);

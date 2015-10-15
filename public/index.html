@@ -104,7 +104,7 @@
             <div class="row">
 
       {{#each item in model itemController="food"}}
-      
+
         <div class="col-md-4 col-sm-6 menu-item">
             <a href="#menuModal" class="menu-link" data-toggle="modal">
                 <div class="menu-hover">
@@ -112,7 +112,7 @@
                         <i class="fa fa-plus fa-3x"></i>
                     </div>
                 </div>
-                <img src="img/menu/placeholder.jpg" class="img-responsive img-centered" alt="">
+                <img {{bind-attr src=item.image_url}} height="200" class="img-responsive img-centered" alt="">
             </a>
             <div class="menu-caption">
                 <h4>{{item.title}}</h4>
