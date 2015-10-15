@@ -33,5 +33,13 @@ App.FoodController = Ember.ObjectController.extend({
       model.save();
       return value;
     }
-  }.property('model.isCompleted')
+  }.property('model.isCompleted'),
+
+  isAppetizer:         function () { return this.get('model').get('category') == 'Appetizer';   }.property('model.isAppetizer'),
+  isSalad:             function () { return this.get('model').get('category') == 'Salad';       }.property('model.isSalad'),
+  isEntree:            function () { return this.get('model').get('category') == 'Entree';      }.property('model.isEntree'),
+  isDessert:           function () { return this.get('model').get('category') == 'Dessert';     }.property('model.isDessert'),
+  isAlcoholicDrink:    function () { return this.get('model').get('category') == 'Alcohol';     }.property('model.isAlcoholicDrink'),
+  isNonAlcoholicDrink: function () { return this.get('model').get('category') == 'Non_Alcohol'; }.property('model.isNonAlcoholicDrink')
+
 });
