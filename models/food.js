@@ -19,7 +19,7 @@ module.exports = {
               console.error('error running query', err);
               res.status(500).json(err);
             }
-            res.status(200).json(result.rows);
+            res.status(200).json({ 'foods' : result.rows });
             client.end();
         });
       });

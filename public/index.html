@@ -31,13 +31,6 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- TODO -->
-    <script src='http://courseware.codeschool.com/ember/jquery.js'></script>
-    <script src='http://courseware.codeschool.com/ember/handlebars.js'></script>
-    <script src='http://courseware.codeschool.com/ember/ember.js'></script>
-    <script src='http://courseware.codeschool.com/ember/ember-data.js'></script>
-    <script src='js/emberinit.js'></script>
-
 </head>
 
 <body id="page-top" class="index">
@@ -98,6 +91,8 @@
         </div>
     </header>
 
+  <script type="text/x-handlebars" data-template-name="foods">
+
     <!-- Food Section -->
     <section id="food">
         <div class="container">
@@ -107,168 +102,40 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 col-sm-6 menu-item">
-                    <a href="#menuModal" class="menu-link" data-toggle="modal">
-                        <div class="menu-hover">
-                            <div class="menu-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/menu/placeholder.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                    <div class="menu-caption">
-                        <h4>Food/Drink Name</h4>
-                        <center>
-                            <table width="200px">
-                                <tr>
-                                    <td width="50%">
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-empty"></i>
-                                        <i class="fa fa-star star-empty"></i>
-                                    </td>
-                                    <td width="50%" style="text-align:right">$9.99</td>
-                                </tr>
-                            </table>
-                        </center>
+
+      {{#each item in model itemController="food"}}
+      
+        <div class="col-md-4 col-sm-6 menu-item">
+            <a href="#menuModal" class="menu-link" data-toggle="modal">
+                <div class="menu-hover">
+                    <div class="menu-hover-content">
+                        <i class="fa fa-plus fa-3x"></i>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 menu-item">
-                    <a href="#menuModal" class="menu-link" data-toggle="modal">
-                        <div class="menu-hover">
-                            <div class="menu-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/menu/placeholder.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                    <div class="menu-caption">
-                        <h4>Food/Drink Name</h4>
-                        <center>
-                            <table width="200px">
-                                <tr>
-                                    <td width="50%">
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-empty"></i>
-                                        <i class="fa fa-star star-empty"></i>
-                                    </td>
-                                    <td width="50%" style="text-align:right">$9.99</td>
-                                </tr>
-                            </table>
-                        </center>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 menu-item">
-                    <a href="#menuModal" class="menu-link" data-toggle="modal">
-                        <div class="menu-hover">
-                            <div class="menu-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/menu/placeholder.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                    <div class="menu-caption">
-                        <h4>Food/Drink Name</h4>
-                        <center>
-                            <table width="200px">
-                                <tr>
-                                    <td width="50%">
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-empty"></i>
-                                        <i class="fa fa-star star-empty"></i>
-                                    </td>
-                                    <td width="50%" style="text-align:right">$9.99</td>
-                                </tr>
-                            </table>
-                        </center>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 menu-item">
-                    <a href="#menuModal" class="menu-link" data-toggle="modal">
-                        <div class="menu-hover">
-                            <div class="menu-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/menu/placeholder.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                    <div class="menu-caption">
-                        <h4>Food/Drink Name</h4>
-                        <center>
-                            <table width="200px">
-                                <tr>
-                                    <td width="50%">
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-empty"></i>
-                                        <i class="fa fa-star star-empty"></i>
-                                    </td>
-                                    <td width="50%" style="text-align:right">$9.99</td>
-                                </tr>
-                            </table>
-                        </center>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 menu-item">
-                    <a href="#menuModal" class="menu-link" data-toggle="modal">
-                        <div class="menu-hover">
-                            <div class="menu-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/menu/placeholder.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                    <div class="menu-caption">
-                        <h4>Food/Drink Name</h4>
-                        <center>
-                            <table width="200px">
-                                <tr>
-                                    <td width="50%">
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-empty"></i>
-                                        <i class="fa fa-star star-empty"></i>
-                                    </td>
-                                    <td width="50%" style="text-align:right">$9.99</td>
-                                </tr>
-                            </table>
-                        </center>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 menu-item">
-                    <a href="#menuModal" class="menu-link" data-toggle="modal">
-                        <div class="menu-hover">
-                            <div class="menu-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/menu/placeholder.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                    <div class="menu-caption">
-                        <h4>Food/Drink Name</h4>
-                        <center>
-                            <table width="200px">
-                                <tr>
-                                    <td width="50%">
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-filled"></i>
-                                        <i class="fa fa-star star-empty"></i>
-                                        <i class="fa fa-star star-empty"></i>
-                                    </td>
-                                    <td width="50%" style="text-align:right">$9.99</td>
-                                </tr>
-                            </table>
-                        </center>
-                    </div>
-                </div>
+                <img src="img/menu/placeholder.jpg" class="img-responsive img-centered" alt="">
+            </a>
+            <div class="menu-caption">
+                <h4>{{item.title}}</h4>
+                <center>
+                    <table width="200px">
+                        <tr>
+                            <td width="50%">
+                                <i class="fa fa-star star-filled"></i>
+                                <i class="fa fa-star star-filled"></i>
+                                <i class="fa fa-star star-filled"></i>
+                                <i class="fa fa-star star-empty"></i>
+                                <i class="fa fa-star star-empty"></i>
+                            </td>
+                            <td width="50%" style="text-align:right">${{item.price}}</td>
+                        </tr>
+                    </table>
+                </center>
+            </div>
+        </div>
+
+      {{/each}}
+
+            </div>
         </div>
     </section>
 
@@ -453,41 +320,17 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Check us out on Social Media!</h2>
-            <div class="container">
-                <div class="col-md-6">
-                    Instagram Stuff
-                </div>
-                <div class="col-md-6">
-                    Twitter Stuff
-                </div>
-            </div>
-            </div>
-
-            <div>
-              <script type='text/x-handlebars' data-template-name='application'>
-                <h3>Last 3 Pull Requests to Ember.js</h3>
-                <ul>
-                {{#each model as |pr|}}
-                  <li>
-                    <div class="issue-number">#{{pr.number}}</div>
-                    <div class="issue-title">
-                      <a href={{pr.html_url}}>{{pr.title}}</a>
-                    </div>
-                    <div class="author-name">
-                      Opened by <a href={{pr.head.user.html_url}}><strong>@{{pr.head.user.login}}</strong></a>
-                    </div>
-                  </li>
-                {{/each}}
-                </ul>
-                <div class='container'>outlet = [ {{outlet}} ]</div>
-                  <a href='#' class='navbar-brand'><img src='http://courseware.codeschool.com/ember/images/logo.png' alt='logo' height='34' width='224' /></a>
-              </script>
-                <script type='text/x-handlebars' data-template-name='index'>
-                  <h1>Welcome to the Flint &amp; Flame!</h1>
-
-              	</script>
-            </div>
-        </div>
+            		<div class="container">
+                		<div class="col-md-6">
+                    		Instagram Stuff
+                		</div>
+                		<div class="col-md-6">
+                    		Twitter Stuff
+                		</div>
+            		</div>
+            	</div>
+			</div>
+		</div>
     </section>
 
     <footer>
@@ -580,6 +423,8 @@
         </div>
     </div>
 
+    </script>
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
@@ -597,9 +442,17 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/agency.js"></script>
 
+    <!-- For Ember -->
+    <script src="js/libs/jquery-1.11.2.min.js"></script>
+    <script src="js/libs/handlebars-v1.3.0.js"></script>
+    <script src="js/libs/ember.js"></script>
+    <script src="js/libs/ember-data.js"></script>
+    <script src="js/emberApp.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/emberModels/food.js"></script>
+    <script src="js/emberControllers/foodsController.js"></script>
+    <script src="js/emberControllers/foodController.js"></script>
+    <script src="js/emberViews/editItemView.js"></script>
+
 </body>
-<footer>
-
-</footer>
-
 </html>

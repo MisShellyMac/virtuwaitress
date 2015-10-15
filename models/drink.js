@@ -2,9 +2,11 @@
 
 var pg = require('pg');
 var conString = 'pg://localhost:5432/virtuwaitress';
+/*
 function Drink() {
   this.table_name = "drink";
 }
+*/
 
 module.exports = {
 
@@ -22,7 +24,7 @@ module.exports = {
               console.error('error running query', err);
               res.status(500).json(err);
             }
-            res.status(200).json(result.rows);
+            res.status(200).json({ "drinks" : result.rows });
             client.end();
         });
 
@@ -91,4 +93,4 @@ module.exports = {
 
 };
 
-module.exports = Drink
+//module.exports = Drink
