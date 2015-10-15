@@ -69,7 +69,6 @@ module.exports = {
             }
             client.end();
         });
-
       });
   },
 
@@ -82,5 +81,4 @@ module.exports = {
   isValidPassword: function(typedInPassword, storedPasswordHash) {
       return bcrypt.compareSync(typedInPassword, storedPasswordHash);
   }
-
 };
