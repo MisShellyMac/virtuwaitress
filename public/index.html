@@ -70,9 +70,6 @@
                             Call Button
                         </a>
                     </li>
-                    <li>
-                      <a href="#payModal" class="menu-link">Pay My Bill</a>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -90,6 +87,18 @@
             </div>
         </div>
     </header>
+
+    <form action="/pay" method="POST">
+      <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="pk_test_srZxgeHwkIW8TdnxEh0whgia"
+        data-amount="2000"
+        data-name="Cohort Café"
+        data-description="Pay Your Bill"
+        data-image="/img/logo.png"
+        data-locale="auto">
+      </script>
+    </form>
 
   <script type="text/x-handlebars" data-template-name="foods/index">
 
@@ -342,7 +351,7 @@
 </script>
 
   <script type="text/x-handlebars" data-template-name="foods">
- 
+
     <!-- Food Section -->
     <section id="food">
         <center>
@@ -435,7 +444,7 @@
                                 </ul>
                                 <div>
                                     <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-plus"></i> Order</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>                                
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                                 </div>
                                 <br/>
                                 <img class="img-responsive img-centered" {{bind-attr src=item.image_url}} alt="">

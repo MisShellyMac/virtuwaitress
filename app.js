@@ -8,6 +8,7 @@ var pg = require('pg');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var food = require('./routes/food');
+var pay = require('./routes/pay');
 var app = require('express')();
 
 // For login
@@ -48,6 +49,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.use('/', index);
 app.use('/users', users);
 app.use('/foods', food);
+app.use('/pay', pay);
 // load the login-related routes and pass in our app and fully configured passport
 require('./routes/loginRoutes.js')(app, passport);
 
