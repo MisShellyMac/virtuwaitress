@@ -91,10 +91,8 @@
         </div>
     </header>
 
-  <script type="text/x-handlebars" data-template-name="foods">
+  <script type="text/x-handlebars" data-template-name="foods/index">
 
-    <!-- Food Section -->
-    <section id="food">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -107,8 +105,9 @@
                 </div>
                 {{#each item in model itemController="food"}}
                     {{#if item.isAppetizer}}
+                    {{#if item.active}}
                         <div class="col-md-4 col-sm-6 menu-item">
-                            <a href="#menuModal" class="menu-link" data-toggle="modal">
+                            <a {{bind-attr href=item.menuModalLink}} class="menu-link" data-toggle="modal">
                                 <div class="menu-hover">
                                     <div class="menu-hover-content">
                                         <i class="fa fa-plus fa-3x"></i>
@@ -134,6 +133,7 @@
                                 </center>
                             </div>
                         </div>
+                    {{/if}}
                     {{/if}}
                 {{/each}}
             </div>
@@ -143,8 +143,9 @@
                 </div>
                 {{#each item in model itemController="food"}}
                     {{#if item.isSalad}}
+                    {{#if item.active}}
                         <div class="col-md-4 col-sm-6 menu-item">
-                            <a href="#menuModal" class="menu-link" data-toggle="modal">
+                            <a {{bind-attr href=item.menuModalLink}} class="menu-link" data-toggle="modal">
                                 <div class="menu-hover">
                                     <div class="menu-hover-content">
                                         <i class="fa fa-plus fa-3x"></i>
@@ -170,6 +171,7 @@
                                 </center>
                             </div>
                         </div>
+                    {{/if}}
                     {{/if}}
                 {{/each}}
             </div>
@@ -179,8 +181,9 @@
                 </div>
                 {{#each item in model itemController="food"}}
                     {{#if item.isEntree}}
+                    {{#if item.active}}
                         <div class="col-md-4 col-sm-6 menu-item">
-                            <a href="#menuModal" class="menu-link" data-toggle="modal">
+                            <a {{bind-attr href=item.menuModalLink}} class="menu-link" data-toggle="modal">
                                 <div class="menu-hover">
                                     <div class="menu-hover-content">
                                         <i class="fa fa-plus fa-3x"></i>
@@ -207,6 +210,7 @@
                             </div>
                         </div>
                     {{/if}}
+                    {{/if}}
                 {{/each}}
             </div>
             <div class="row">
@@ -215,8 +219,9 @@
                 </div>
                 {{#each item in model itemController="food"}}
                     {{#if item.isDessert}}
+                    {{#if item.active}}
                         <div class="col-md-4 col-sm-6 menu-item">
-                            <a href="#menuModal" class="menu-link" data-toggle="modal">
+                            <a {{bind-attr href=item.menuModalLink}} class="menu-link" data-toggle="modal">
                                 <div class="menu-hover">
                                     <div class="menu-hover-content">
                                         <i class="fa fa-plus fa-3x"></i>
@@ -242,6 +247,7 @@
                                 </center>
                             </div>
                         </div>
+                    {{/if}}
                     {{/if}}
                 {{/each}}
             </div>
@@ -262,8 +268,9 @@
                 </div>
                 {{#each item in model itemController="food"}}
                     {{#if item.isAlcoholicDrink}}
+                    {{#if item.active}}
                         <div class="col-md-4 col-sm-6 menu-item">
-                            <a href="#menuModal" class="menu-link" data-toggle="modal">
+                            <a {{bind-attr href=item.menuModalLink}} class="menu-link" data-toggle="modal">
                                 <div class="menu-hover">
                                     <div class="menu-hover-content">
                                         <i class="fa fa-plus fa-3x"></i>
@@ -289,6 +296,7 @@
                                 </center>
                             </div>
                         </div>
+                    {{/if}}
                     {{/if}}
                 {{/each}}
             </div>
@@ -298,8 +306,9 @@
                 </div>
                 {{#each item in model itemController="food"}}
                     {{#if item.isNonAlcoholicDrink}}
+                    {{#if item.active}}
                         <div class="col-md-4 col-sm-6 menu-item">
-                            <a href="#menuModal" class="menu-link" data-toggle="modal">
+                            <a {{bind-attr href=item.menuModalLink}} class="menu-link" data-toggle="modal">
                                 <div class="menu-hover">
                                     <div class="menu-hover-content">
                                         <i class="fa fa-plus fa-3x"></i>
@@ -326,9 +335,26 @@
                             </div>
                         </div>
                     {{/if}}
+                    {{/if}}
                 {{/each}}
             </div>
         </div>
+</script>
+
+  <script type="text/x-handlebars" data-template-name="foods">
+ 
+    <!-- Food Section -->
+    <section id="food">
+        <center>
+        <div>
+        {{#link-to "foods.index" class="btn btn-xl" activeClass="btn btn-xl-selected"}}All{{/link-to}}&nbsp;&nbsp;
+        {{#link-to "foods.glutenfree" class="btn btn-xl" activeClass="btn btn-xl-selected"}}Gluten-Free{{/link-to}}&nbsp;&nbsp;
+        {{#link-to "foods.vegetarian" class="btn btn-xl" activeClass="btn btn-xl-selected"}}Vegetarian{{/link-to}}&nbsp;&nbsp;
+        {{#link-to "foods.vegan" class="btn btn-xl" activeClass="btn btn-xl-selected"}}Vegan{{/link-to}}
+        <br/><br/>
+        </div>
+        </center>
+   {{outlet}}
     </section>
 
     <!-- Social Media Section -->
@@ -380,35 +406,46 @@
 
     <!-- Modals -->
 
-    <!-- Menu Modal -->
-    <div class="menu-modal modal fade" id="menuModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
+    {{#each item in model itemController="food"}}
+        <!-- Menu Modal -->
+        <div class="menu-modal modal fade" {{bind-attr id=item.menuModalId}} tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Food/Drink Name</h2>
-                            <p class="text-muted">Description about the item here.</p>
-                            <img class="img-responsive img-centered" src="img/menu/placeholder.jpg" alt="">
-                            <p>Any other info?</p>
-                            <ul class="list-inline">
-                                <li>Gluten Free</li>
-                                <li>Vegetarian</li>
-                                <li>Vegan</li>
-                            </ul>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <h2>{{item.title}}</h2>
+                                <p class="text-muted">{{item.description}}</p>
+                                <ul class="list-inline">
+                    {{#if item.gluten_free}}
+                                    <li><b>Gluten Free</b></li>
+                    {{/if}}
+                    {{#if item.vegetarian}}
+                                    <li><b>Vegetarian</b></li>
+                    {{/if}}
+                    {{#if item.vegan}}
+                                    <li><b>Vegan</b></li>
+                    {{/if}}
+                                </ul>
+                                <div>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-plus"></i> Order</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>                                
+                                </div>
+                                <br/>
+                                <img class="img-responsive img-centered" {{bind-attr src=item.image_url}} alt="">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    {{/each}}
 
     <!-- Call Button Modal -->
     <div class="menu-modal modal fade" id="callButtonModal" tabindex="-1" role="dialog" aria-hidden="true">
