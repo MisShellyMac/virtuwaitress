@@ -1,23 +1,31 @@
 "use strict";
 
-var foodModel = require('../models/food');
+var model = require('../models/food');
 
 module.exports = {
 
-  getAllFood: function(res) {
-    foodModel.getAllFood(res);
+  find: function(id, res) {
+    model.getMenuItem(id, res);
   },
 
-  getAllGFFood: function(res) {
-    foodModel.getAllGFFood(res);
+  findAll: function(res) {
+    model.getAllMenuItems(res);
   },
 
-  getAllVeganFood: function(res){
-    foodModel.getAllVeganFood(res);
+  update: function(id, item, res) {
+    model.updateMenuItem(id, item, res);
   },
 
-  getAllVegetarianFood: function(res){
-    foodModel.getAllVegetarianFood(res);
+  create: function(item, res) {
+    model.createMenuItem(item, res);
   },
+
+  delete: function(id, res) {
+    model.deleteMenuItem(id, res);
+  },
+
+  rate: function(id, rating, res) {
+    model.rateMenuItem(id, rating, res);
+  }
 
 };
