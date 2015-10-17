@@ -9,6 +9,10 @@ body {
     font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
+.star-mine {
+    color: red;
+}
+
 .star-filled {
     color: #fed136;
 }
@@ -16,6 +20,26 @@ body {
 .star-empty {
     color: #ddd;
 }
+
+.hoverglow {
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-ms-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	transition: all 0.2s;
+}
+
+.hoverglow:hover {
+    color: red;
+	text-shadow: 0 0 2px #000,
+				 0 0 10px red;
+	-webkit-transform: scale(1.5);
+	-moz-transform: scale(1.5);
+	-ms-transform: scale(1.5);
+	-o-transform: scale(1.5);
+	transform: scale(1.5);
+}
+
 .text-muted {
     color: #777;
 }

@@ -1,13 +1,16 @@
 App.Router.map(function () {
   this.resource('foods', { path: '/' }, function () {
-    // additional child routes will go here later
-    this.route('active');
-    this.route('completed');
+    // additional child routes
     this.route('glutenfree');
     this.route('vegetarian');
     this.route('vegan');
   });
 });
+
+// Prevent Ember from interferring with /#... URLs
+//App.Router.reopen({
+//  location: 'history'
+//});
 
 App.FoodsRoute = Ember.Route.extend({
   model: function() {
@@ -15,12 +18,14 @@ App.FoodsRoute = Ember.Route.extend({
   }
 });
 
+// Show all menu items
 App.FoodsIndexRoute = Ember.Route.extend({
   model: function() {
     return this.modelFor('foods');
   }
 });
 
+// Filter by gluten-free
 App.FoodsGlutenfreeRoute = Ember.Route.extend({
   model: function(){
     return this.store.filter('food', function(item) {
@@ -32,6 +37,7 @@ App.FoodsGlutenfreeRoute = Ember.Route.extend({
   }
 });
 
+// Filter by vegetarian
 App.FoodsVegetarianRoute = Ember.Route.extend({
   model: function(){
     return this.store.filter('food', function(item) {
@@ -43,32 +49,11 @@ App.FoodsVegetarianRoute = Ember.Route.extend({
   }
 });
 
+// Filter by vegan
 App.FoodsVeganRoute = Ember.Route.extend({
   model: function(){
     return this.store.filter('food', function(item) {
       return item.get('vegan');
-    });
-  },
-  renderTemplate: function(controller) {
-    this.render('foods/index', {controller: controller});
-  }
-});
-
-App.FoodsActiveRoute = Ember.Route.extend({
-  model: function(){
-    return this.store.filter('food', function(item) {
-      return !item.get('isCompleted');
-    });
-  },
-  renderTemplate: function(controller) {
-    this.render('foods/index', {controller: controller});
-  }
-});
-
-App.FoodsCompletedRoute = Ember.Route.extend({
-  model: function() {
-    return this.store.filter('food', function(item) {
-      return item.get('isCompleted');
     });
   },
   renderTemplate: function(controller) {

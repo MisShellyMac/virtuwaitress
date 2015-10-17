@@ -12,6 +12,7 @@ var pay = require('./routes/pay');
 var app = require('express')();
 var ig = require('instagram-node').instagram();
 var Twitter = require('twitter');
+
 // For login
 var passport = require('passport');
 var flash    = require('connect-flash');

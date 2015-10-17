@@ -1,25 +1,46 @@
 var express = require('express');
 var router = express.Router();
-var foodController = require('../controllers/food');
+var controller = require('../controllers/food');
 
-// GET /food
+// Expose APIs matching the expectations of the Ember RESTAdapter:
+// ---------------------------------------
+// Action     HTTP Verb   URL
+// ---------------------------------------
+// Find       GET         /foods/123
+// Find All   GET         /foods
+// Update     PUT         /foods/123
+// Create     POST        /foods
+// Delete     DELETE      /foods/123
+// ---------------------------------------
+
+// Find
+router.get('/:id', function(req, res, next) {
+  return controller.find(req.params.id, res);
+});
+
+// Find All
 router.get('/', function(req, res, next) {
-  return foodController.getAllFood(res);
+  return controller.findAll(res);
 });
 
-// GET /food/gf
-router.get('/gf', function(req, res, next) {
-  return foodController.getAllGFFood(res);
+// Update
+router.put('/:id', function(req, res, next) {
+  return controller.update(req.params.id, req.body.food, res);
 });
 
-// GET /food/vegan
-router.get('/vegan', function(req, res, next) {
-  return foodController.getAllVeganFood(res);
+// Create
+router.post('/', function(req, res, next) {
+  return controller.create(req.body.food, res);
 });
 
-// GET /food/vegetarian
-router.get('/vegetarian', function(req, res, next) {
-  return foodController.getAllVegetarianFood(res);
+// Delete
+router.delete('/:id', function(req, res, next) {
+  return controller.delete(req.params.id, res);
+});
+
+// Plus, an API for rating a menu item
+router.put('/rate/:id/:rating', function(req, res, next) {
+  return controller.rate(req.params.id, new Number(req.params.rating), res);
 });
 
 module.exports = router;

@@ -33,64 +33,85 @@
     </div>
 
   <script type="text/x-handlebars" data-template-name="foods/index">
-    <table class="editlist">
+    <table class="editlist" width="100%">
       {{#each item in model itemController="food"}}
-      <tr {{bind-attr class="item.isCompleted:completed item.isEditing:editing" }}>
-        <td>
-          {{input type="checkbox" checked=item.isCompleted class="toggle"}}
+      <tr>
+        <td rowspan="3">
+          {{input type="checkbox" checked=item.isInactive class="toggle"}}
         </td>
-        <td>
-          {{#if item.isEditing}} {{edit-item class="edit" value=item.title focus-out="acceptChanges" insert-newline="acceptChanges"}}
-          {{else}}
-          <label class="menu" {{action "editItem" on="doubleClick" }}>{{item.title}}</label>
-          {{/if}}
+        <td {{bind-attr class="item.isInactive:inactive"}}>
+          {{view "select"
+            contentBinding="App.validCategories"
+            valueBinding="item.category"
+          }}
         </td>
-        <td>
-          {{#if item.isEditing}} {{edit-item class="edit" value=item.price focus-out="acceptChanges" insert-newline="acceptChanges"}}
-          {{else}}
-          <label class="menu" {{action "editItem" on="doubleClick" }}>{{item.price}}</label>
-          {{/if}}
+        <td {{bind-attr class="item.isInactive:inactive"}}>
+{{#if item.isEditingTitle}}
+          {{edit-item class="edit" value=item.title focus-out="acceptChange" insert-newline="acceptChange"}}
+{{else}}
+          <label class="menu hoverglow" {{action "editTitle" on="click" }}>{{item.title}}</label>
+{{/if}}
         </td>
-        <td>
-          {{#if item.isEditing}} {{edit-item class="edit" value=item.active focus-out="acceptChanges" insert-newline="acceptChanges"}}
-          {{else}}
-          <label class="menu" {{action "editItem" on="doubleClick" }}>{{item.active}}</label>
-          {{/if}}
+        <td {{bind-attr class="item.isInactive:inactive"}}>
+{{#if item.isEditingPrice}}
+          {{edit-item class="edit" value=item.price focus-out="acceptChange" insert-newline="acceptChange"}}
+{{else}}
+          <label class="menu hoverglow" {{action "editPrice" on="click" }}>${{item.price}}</label>
+{{/if}}
         </td>
-        <td>
-          {{#if item.isEditing}} {{edit-item class="edit" value=item.vegan focus-out="acceptChanges" insert-newline="acceptChanges"}}
-          {{else}}
-          <label class="menu" {{action "editItem" on="doubleClick" }}>{{item.vegan}}</label>
-          {{/if}}
+        <td  {{bind-attr class="item.isInactive:inactive"}} rowspan="3" style="min-width:104px">
+          <label>{{input type='checkbox' checked=item.vegan}} Vegan</label>
+          <label>{{input type='checkbox' checked=item.vegetarian}} Vegetarian</label>
+          <label>{{input type='checkbox' checked=item.gluten_free}} Gluten-Free</label>
         </td>
-        <td>
-          {{#if item.isEditing}} {{edit-item class="edit" value=item.vegetarian focus-out="acceptChanges" insert-newline="acceptChanges"}}
-          {{else}}
-          <label class="menu" {{action "editItem" on="doubleClick" }}>{{item.vegetarian}}</label>
-          {{/if}}
-        </td>
-        <td>
-          {{#if item.isEditing}} {{edit-item class="edit" value=item.category focus-out="acceptChanges" insert-newline="acceptChanges"}}
-          {{else}}
-          <label class="menu" {{action "editItem" on="doubleClick" }}>{{item.category}}</label>
-          {{/if}}
-        </td>
-        <td>
-          {{#if item.isEditing}} {{edit-item class="edit" value=item.gluten_free focus-out="acceptChanges" insert-newline="acceptChanges"}}
-          {{else}}
-          <label class="menu" {{action "editItem" on="doubleClick" }}>{{item.gluten_free}}</label>
-          {{/if}}
-        </td>
-        <td>
+        <td rowspan="3">
           <button {{action "removeItem"}} class="destroy"></button>
         </td>
       </tr>
       <tr>
-        <td colspan='9'>
-          {{#if item.isEditing}} {{edit-item class="edit" value=item.description focus-out="acceptChanges" insert-newline="acceptChanges"}}
-          {{else}}
-          <label class="menu-description" {{action "editItem" on="doubleClick" }}>{{item.description}}</label>
-          {{/if}}
+        <td {{bind-attr class="item.isInactive:inactive"}}>
+{{#if item.isEditingImage}}
+          {{edit-item class="edit" value=item.image_url focus-out="acceptChange" insert-newline="acceptChange"}}
+{{else}}
+          <img {{bind-attr src=item.image_url}} class="hoverglow" {{action "editImage" on="click" }} style="height:67px;margin-left:0px" alt="">
+{{/if}}
+        </td>
+        <td colspan="2" {{bind-attr class="item.isInactive:inactive"}}>
+{{#if item.isEditingDescription}}
+          {{edit-item class="edit" value=item.description focus-out="acceptChange" insert-newline="acceptChange"}}
+{{else}}
+          <label class="menu-description hoverglow" {{action "editDescription" on="click" }}>{{item.description}}</label>
+{{/if}}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" {{bind-attr class="item.isInactive:inactive"}}>
+{{#if item.has1Star}}
+          <i class="fa fa-star star-filled"></i>
+{{else}}
+          <i class="fa fa-star star-empty"></i>
+{{/if}}
+{{#if item.has2Stars}}
+          <i class="fa fa-star star-filled"></i>
+{{else}}
+          <i class="fa fa-star star-empty"></i>
+{{/if}}
+{{#if item.has3Stars}}
+          <i class="fa fa-star star-filled"></i>
+{{else}}
+          <i class="fa fa-star star-empty"></i>
+{{/if}}
+{{#if item.has4Stars}}
+          <i class="fa fa-star star-filled"></i>
+{{else}}
+          <i class="fa fa-star star-empty"></i>
+{{/if}}
+{{#if item.has5Stars}}
+          <i class="fa fa-star star-filled"></i>
+{{else}}
+          <i class="fa fa-star star-empty"></i>
+{{/if}}
+          ({{item.avg_rating}} RATING, {{item.total_ratings}} VOTES)
         </td>
       </tr>
       {{/each}}
@@ -100,11 +121,42 @@
   <script type="text/x-handlebars" data-template-name="foods">
   <center>
       <section class="dashboard">
-        <header class="header">
-        </header>
         <section class="main">
-          {{input type="text" class="newItem" placeholder="Add new food" value=newTitle action="createFood"}}
           {{outlet}}
+          <table class="editlist newItem" width="100%">
+            <tr>
+              <td>
+              </td>
+              <td colspan="4">
+                <div style="padding:4px"><b>New Menu Item</b></div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {{input type="checkbox" checked=newInactive class="toggle"}}
+              </td>
+              <td>
+                {{view "select"
+                  contentBinding="App.validCategories"
+                  value=newCategory
+                }}
+              </td>
+              <td>
+                {{edit-item class="edit" value=newTitle placeholder="TITLE"}}
+                {{edit-item class="edit" value=newPrice placeholder="PRICE"}}
+                {{edit-item class="edit" value=newDescription placeholder="DESCRIPTION"}}
+                {{edit-item class="edit" value=newImage placeholder="IMAGE URL (/img/menu/...)"}}
+              </td>
+              <td style="min-width:104px">
+                <label>{{input type='checkbox' checked=newVegan}} Vegan</label>
+                <label>{{input type='checkbox' checked=newVegetarian}} Vegetarian</label>
+                <label>{{input type='checkbox' checked=newGlutenFree}} Gluten-Free</label>
+              </td>
+              <td>
+                <button {{action "createMenuItem"}} class="plus"></button>
+              </td>
+            </tr>
+          </table>
         </section>
     </center>
   </script>
