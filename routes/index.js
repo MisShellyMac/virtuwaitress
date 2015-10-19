@@ -20,4 +20,25 @@ client.connect(
     });
   });
 
+
+  var env = require('node-env-file');
+  env(__dirname + "/../secret.env");
+
+  var Twitter = require('twitter');
+
+  var client = new Twitter({
+    consumer_key: process.env.TWITTER_API_KEY,
+    consumer_secret: process.env.TWITTER_API_SECRET,
+    access_token_key: process.env.TWITTER_ACCESS_TOKEN,
+    access_token_secret: process.env.TWITTER_TOKEN_SECRET
+  });
+
+  client.get('search/tweets', {q: '@cohortcafe'}, function(error, tweets, response){
+     console.log(tweets);
+  });
+
+  client.get('search/tweets', {q: '#cohortcafe'}, function(error, tweets, response){
+     console.log(tweets);
+  });
+
 module.exports = router;
