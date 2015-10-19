@@ -25,6 +25,7 @@ router.post('/', function(req, res, next) {
     else {
       // The charge was successful
       res.render('paymentSuccess.ejs');
+      // TODO: Direct database call to mark order as paid
     }
   });
 

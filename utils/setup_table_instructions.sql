@@ -34,6 +34,21 @@ COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, 
 
   COPY users(username, password, isAdmin) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/users.csv' WITH DELIMITER ',' CSV ;
 
+  DROP TABLE IF EXISTS orders;
+  CREATE TABLE orders (
+       id               serial PRIMARY KEY,
+       user_id          int NOT NULL,
+       paid             date
+   );
+
+   DROP TABLE IF EXISTS order_items;
+   CREATE TABLE order_items (
+        id               serial PRIMARY KEY,
+        menu_item_id     int NOT NULL,
+        order_id         int NOT NULL
+    );
+
+/*
   DROP TABLE IF EXISTS approved_tweets;
   CREATE TABLE approved_tweets (
        id               serial PRIMARY KEY,
@@ -53,4 +68,5 @@ COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, 
 
    );
 
-  COPY menu_items(title, description, image_url) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/approved_grams.csv' WITH DELIMITER ',' CSV  ;
+  COPY approved_grams(title, description, image_url) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/approved_grams.csv' WITH DELIMITER ',' CSV  ;
+  */
