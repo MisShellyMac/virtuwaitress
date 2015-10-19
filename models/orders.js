@@ -45,11 +45,28 @@ module.exports = {
   },
 
   createOrder: function(user_id, res) {
-
     executeQuery(
-      'INSERT INTO orders (user_id) ' +
-      'VALUES($1)',
+      'INSERT INTO orders (user_id, submitted) ' +
+      'VALUES($1, FALSE)',
       [user_id],
+      res,
+      function(result) { res.status(200).json([]); }
+    );
+  },
+
+  submit: function(id, res) {
+    executeQuery(
+      'UPDATE orders SET submitted=TRUE WHERE id=$1',
+      [id],
+      res,
+      function(result) { res.status(200).json([]); }
+    );
+  },
+
+  pay: function(id, res) {
+    executeQuery(
+      'UPDATE orders SET paid=NOW() WHERE id=$1',
+      [id],
       res,
       function(result) { res.status(200).json([]); }
     );

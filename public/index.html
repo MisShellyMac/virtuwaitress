@@ -625,6 +625,19 @@
 		</div>
     </section>
 
+    <!-- Temporary
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Your Order</h2>
+                    render 'orderItems'
+            	</div>
+			</div>
+		</div>
+    </section>
+    -->
+    
     <footer>
         <div class="container">
                 <div class="col-md-6">
@@ -728,6 +741,68 @@
 
     </script>
 
+  <script type="text/x-handlebars" data-template-name="orderItems/index">
+    <table class="editlist" width="50%" border="2" style="background-color:#ccc">
+        <tr>
+        <td>ITEMS:</td>
+        </tr>
+      {{#each item in model itemController="orderItem"}}
+      <tr>
+        <td>
+          <label class="menu">{{item.menu_item_id}}</label>
+        </td>
+        <td>
+          <button {{action "removeItem"}} class="destroy"></button>
+        </td>
+      </tr>
+      {{/each}}
+    </table>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="orderItems">
+  <center>
+      <section class="dashboard">
+        <section class="main">
+        YOUR ORDER
+          {{render 'orderItems/index'}}
+          <table class="editlist newItem" width="100%">
+            <tr>
+              <td>
+              </td>
+              <td colspan="4">
+                <div style="padding:4px"><b>New Order Item</b></div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {{input type="checkbox" checked=newInactive class="toggle"}}
+              </td>
+              <td>
+                {{view "select"
+                  contentBinding="App.validCategories"
+                  value=newCategory
+                }}
+              </td>
+              <td>
+                {{edit-item class="edit" value=newTitle placeholder="TITLE"}}
+                {{edit-item class="edit" value=newPrice placeholder="PRICE"}}
+                {{edit-item class="edit" value=newDescription placeholder="DESCRIPTION"}}
+                {{edit-item class="edit" value=newImage placeholder="IMAGE URL (/img/menu/...)"}}
+              </td>
+              <td style="min-width:104px">
+                <label>{{input type='checkbox' checked=newVegan}} Vegan</label>
+                <label>{{input type='checkbox' checked=newVegetarian}} Vegetarian</label>
+                <label>{{input type='checkbox' checked=newGlutenFree}} Gluten-Free</label>
+              </td>
+              <td>
+                <button {{action "createOrderItem"}}>CREATE</button>
+              </td>
+            </tr>
+          </table>
+        </section>
+    </center>
+  </script>
+  
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
@@ -752,9 +827,15 @@
     <script src="js/libs/ember-data.js"></script>
     <script src="js/emberApp.js"></script>
     <script src="js/router.js"></script>
+
     <script src="js/emberModels/food.js"></script>
     <script src="js/emberControllers/foodsController.js"></script>
     <script src="js/emberControllers/foodController.js"></script>
+
+    <script src="js/emberModels/orderItem.js"></script>
+    <script src="js/emberControllers/orderItemsController.js"></script>
+    <script src="js/emberControllers/orderItemController.js"></script>
+
     <script src="js/emberViews/editItemView.js"></script>
 
 </body>

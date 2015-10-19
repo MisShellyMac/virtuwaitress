@@ -1,10 +1,15 @@
 App.Router.map(function () {
+  
+  // Set up the Ember support for foods and filtered subsets
   this.resource('foods', { path: '/' }, function () {
     // additional child routes
     this.route('glutenfree');
     this.route('vegetarian');
     this.route('vegan');
   });
+
+//  this.resource('orderItems', { path: '/' }, function () {
+//  });  
 });
 
 // Prevent Ember from interferring with /#... URLs
@@ -12,6 +17,7 @@ App.Router.map(function () {
 //  location: 'history'
 //});
 
+// "foods" route
 App.FoodsRoute = Ember.Route.extend({
   model: function() {
     return this.store.find('food');
@@ -58,5 +64,19 @@ App.FoodsVeganRoute = Ember.Route.extend({
   },
   renderTemplate: function(controller) {
     this.render('foods/index', {controller: controller});
+  }
+});
+
+// "orderItems" route
+App.OrderItemsRoute = Ember.Route.extend({
+  model: function() {
+    return this.store.find('orderItem');
+  }
+});
+
+// Show all order items
+App.OrderItemsIndexRoute = Ember.Route.extend({
+  model: function() {
+    return this.modelFor('orderItems');
   }
 });

@@ -38,6 +38,7 @@ COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, 
   CREATE TABLE orders (
        id               serial PRIMARY KEY,
        user_id          int NOT NULL,
+       submitted        boolean NOT NULL,
        paid             date
    );
 

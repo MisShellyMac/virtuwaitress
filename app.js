@@ -8,6 +8,7 @@ var pg = require('pg');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var food = require('./routes/food');
+var orderItems = require('./routes/orderItems');
 var pay = require('./routes/pay');
 var app = require('express')();
 var ig = require('instagram-node').instagram();
@@ -51,6 +52,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.use('/', index);
 app.use('/users', users);
 app.use('/foods', food);
+app.use('/orderItems', orderItems);
 app.use('/pay', pay);
 // load the login-related routes and pass in our app and fully configured passport
 require('./routes/loginRoutes.js')(app, passport);
