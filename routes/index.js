@@ -34,12 +34,27 @@ client.connect(
   });
 //this will return the result of tweets with mentions to @business
   client.get('search/tweets', {q: '@cohortcafe'}, function(error, tweets, response){
-     console.log(tweets);
-  });
+    //  console.log(tweets);
+    for (var i = 0; i < tweets.statuses.length; i++)
+        {
+          var tweet = tweets.statuses[i];
+          console.log(tweet.text);
+          console.log(tweet.user.screen_name);
+          console.log(tweet.user.profile_image_url);
+        }
+      });
 // this will return results searching for the hashtag of the business
-  client.get('search/tweets', {q: '#cohortcafe'}, function(error, tweets, response){
-     console.log(tweets);
-  });
+client.get('search/tweets', {q: '#cohortcafe'}, function(error, tweets, response){
+  //  console.log(tweets);
+  for (var i = 0; i < tweets.statuses.length; i++)
+      {
+        var tweet = tweets.statuses[i];
+        console.log(tweet.text);
+        console.log(tweet.user.screen_name);
+        console.log(tweet.user.profile_image_url);
+      }
+    });
+
 
   var ig = require('instagram-node').instagram();
 
