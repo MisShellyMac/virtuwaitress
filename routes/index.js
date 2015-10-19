@@ -66,12 +66,13 @@ client.get('search/tweets', {q: '#cohortcafe'}, function(error, tweets, response
 // there is no current api endpoint for @mentions for instagram. It would be up to the individual businesses/users to possibly repost grams that they were mentioned in so that it would then be visible to api call in future as a post by the business/user.
 
   ig.tag_media_recent('cohortcafe', function(err, medias, pagination, remaining, limit) {
-   console.log(medias);
+  //  console.log(medias);
     for (var i = 0; i < medias.length; i++)
     {
       var gram = medias[i];
       console.log(gram.user.username + ": " + gram.caption.text);
       console.log(gram.user.profile_picture);
+      console.log(gram.tags);
     }
   });
 
