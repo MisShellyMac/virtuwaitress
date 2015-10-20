@@ -1,5 +1,5 @@
 App.Router.map(function () {
-  
+
   // Set up the Ember support for foods and filtered subsets
   this.resource('foods', { path: '/' }, function () {
     // additional child routes
@@ -9,7 +9,7 @@ App.Router.map(function () {
   });
 
 //  this.resource('orderItems', { path: '/' }, function () {
-//  });  
+//  });
 });
 
 // Prevent Ember from interferring with /#... URLs
