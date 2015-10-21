@@ -9,7 +9,7 @@ router.get('/:id', function(req, res, next) {
   return controller.find(req.params.id, res);
 });
 
-// Find All (TODO order_id)
+// Find All
 router.get('/', function(req, res, next) {
   return controller.findAll(res);
 });
