@@ -19,6 +19,7 @@ function executeQuery(query, params, res, callback)
               res.status(500).json(err);
             }
             client.end();
+            console.log(result);
             callback(result);
         });
       });
@@ -34,21 +35,19 @@ module.exports = {
     );
   },
 
-  getAllApprovedSocialMedia: function(order_id, res) {
+  getAllApprovedSocialMedia: function(res) {
     executeQuery(
       'SELECT * from approved_social_media;',
-      [approved_social_media.id],
       res,
       function(result) { res.status(200).json({ 'approved_social_media' : result.rows }); }
     );
   },
 
-  createApprovedSocialMedia: function(item, res) {
-    // TODO Check that order is not submitted first
+  createApprovedSocialMediaItem: function(item, res) {
     executeQuery(
-      'INSERT INTO approved_social_media (media.id, media.type, media.content, media.username, media.image_url) ' +
-      'VALUES($1, $2, $3, $4, $5)',
-      [approved_social_media.id, approved_social_media.type, approved_social_media.content, approved_social_media.username, approved_social_media.image_url],
+      'INSERT INTO approved_social_media (type, content, username, image_url) ' +
+      'VALUES($1, $2, $3, $4)',
+      [item.type, item.content, item.username, item.image_url],
       res,
       function(result) { res.status(200).json([]); }
     );

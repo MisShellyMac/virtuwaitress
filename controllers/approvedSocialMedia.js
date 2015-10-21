@@ -13,7 +13,7 @@ module.exports = {
   },
 
   create: function(item, res) {
-    model.createApprovedSocialMedia(item, res);
+    model.createApprovedSocialMediaItem(item, res);
   },
   delete: function(id, res) {
     model.deleteApprovedSocialMedia(id, res);

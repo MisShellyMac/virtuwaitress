@@ -49,7 +49,7 @@ COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, 
         order_id         int NOT NULL
     );
 
-  DROP TABLE IF EXISTS approved_tweets;
+  DROP TABLE IF EXISTS approved_social_media;
   CREATE TABLE approved_social_media (
        id               serial PRIMARY KEY,
        type             text NOT NULL,
