@@ -37,7 +37,7 @@ module.exports = {
 
   getAllOrderItems: function(order_id, res) {
     executeQuery(
-      'SELECT * from order_items WHERE order_id=$1',
+      'SELECT order_items.id, menu_item_id, title, price, image_url from order_items JOIN menu_items ON menu_item_id=menu_items.id WHERE order_id=$1 ORDER BY id',
       [order_id],
       res,
       function(result) { res.status(200).json({ 'orderItems' : result.rows }); }

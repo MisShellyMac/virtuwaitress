@@ -25,6 +25,28 @@ $('.navbar-collapse ul li a').click(function() {
     $('.navbar-toggle:visible').click();
 });
 
+//
+// Order stuff:
+//
+function addToOrder(menuItemId)
+{
+    showOrder();
+    parent.frames["order"].add(menuItemId);
+}
+
+function showOrder()
+{
+    window.frameElement.parentNode.cols = "*,25%";
+}
+
+function hideOrder()
+{
+    window.frameElement.parentNode.cols = "*";
+}
+
+//
+// Call button stuff:
+//
 var interval = null;
 
 function turnButtonOff()
