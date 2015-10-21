@@ -95,7 +95,6 @@ module.exports = function(app, passport) {
                 message : null,
                 liveSocialMediaItems : liveSocialMediaItems
             });
-
           }); // End of instagram get
         }); // End of 2nd twitter get
       }); // End of 1st twitter get

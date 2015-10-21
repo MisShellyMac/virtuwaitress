@@ -19,7 +19,7 @@ function executeQuery(query, params, res, callback)
               res.status(500).json(err);
             }
             client.end();
-            console.log(result);
+            // console.log(result);
             callback(result);
         });
       });
