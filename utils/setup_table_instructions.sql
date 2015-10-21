@@ -49,25 +49,13 @@ COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, 
         order_id         int NOT NULL
     );
 
-/*
   DROP TABLE IF EXISTS approved_tweets;
-  CREATE TABLE approved_tweets (
+  CREATE TABLE approved_social_media (
        id               serial PRIMARY KEY,
-       title            text,
-       description      text,
+       type             text NOT NULL,
+       content          text,
+       username         text NOT NULL,
        image_url        text
    );
 
-  COPY approved_tweets(title, description, image_url) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/approved_tweets.csv' WITH DELIMITER ',' CSV  ;
-
-  DROP TABLE IF EXISTS approved_grams;
-  CREATE TABLE approved_grams (
-       id               serial PRIMARY KEY,
-       title            text,
-       description      text,
-       image_url        text
-
-   );
-
-  COPY approved_grams(title, description, image_url) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/approved_grams.csv' WITH DELIMITER ',' CSV  ;
-  */
+  COPY approved_social_media(type, content, username, image_url) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/approvedSocialMedia.csv' WITH DELIMITER ',' CSV  ;
