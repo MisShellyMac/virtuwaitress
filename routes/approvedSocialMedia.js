@@ -11,12 +11,12 @@ router.get('/:id', function(req, res, next) {
 
 // Find All (TODO order_id)
 router.get('/', function(req, res, next) {
-  return controller.findAll(1, res);
+  return controller.findAll(res);
 });
 
 // Create
 router.post('/', function(req, res, next) {
-  return controller.create(req.body.orderItem, res);
+  return controller.create(req.body.item, res);
 });
 
 // Delete

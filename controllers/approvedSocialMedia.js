@@ -8,8 +8,8 @@ module.exports = {
     model.getApprovedSocialMedia(id, res);
   },
 
-  findAll: function(order_id, res) {
-    model.getAllApprovedSocialMedia(order_id, res);
+  findAll: function(res) {
+    model.getAllApprovedSocialMedia(res);
   },
 
   create: function(item, res) {

@@ -38,6 +38,7 @@ module.exports = {
   getAllApprovedSocialMedia: function(res) {
     executeQuery(
       'SELECT * from approved_social_media;',
+      [],
       res,
       function(result) { res.status(200).json({ 'approved_social_media' : result.rows }); }
     );
