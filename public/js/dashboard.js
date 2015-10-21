@@ -25,7 +25,7 @@ function deleteApprovedSocialMediaItem(itemId)
 function refreshApprovedList()
 {
     // Get the order items
-    $.get( "/socialMediaItems", function(data) {
+    $.get( "/approvedSocialMedia", function(data) {
         $("#list").html("<table style='margin:10px'>");
 
         var items = data.items;

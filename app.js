@@ -13,6 +13,7 @@ var pay = require('./routes/pay');
 var app = require('express')();
 var ig = require('instagram-node').instagram();
 var Twitter = require('twitter');
+var approvedSocialMedia = require('./routes/approvedSocialMedia');
 
 // For login
 var passport = require('passport');
@@ -54,6 +55,7 @@ app.use('/users', users);
 app.use('/foods', food);
 app.use('/orderItems', orderItems);
 app.use('/pay', pay);
+app.use('/approvedSocialMedia', approvedSocialMedia);
 // load the login-related routes and pass in our app and fully configured passport
 require('./routes/loginRoutes.js')(app, passport);
 
