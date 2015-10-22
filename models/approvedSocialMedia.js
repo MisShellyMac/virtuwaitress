@@ -26,12 +26,12 @@ function executeQuery(query, params, res, callback)
 }
 module.exports = {
 
-  getApprovedSocialMedia: function(id, res) {
+  getAllApprovedSocialMediaDirectly: function(callback) {
     executeQuery(
-      'SELECT * from approved_social_media WHERE id=$1',
-      [id],
-      res,
-      function(result) { res.status(200).json({ 'approved_social_media' : result.rows }); }
+      'SELECT * from approved_social_media',
+      [],
+      null,
+      function(result) { callback(result.rows); }
     );
   },
 

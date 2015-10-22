@@ -56,7 +56,7 @@ function turnButtonOff()
 
     // Make sure it's off
     $('#callButtonOn').css('z-index', -100);
-    
+
     interval = null;
 }
 
@@ -77,7 +77,7 @@ function turnButtonOn()
         {
             $('#callButtonOn').css('z-index', 100);
         }
-    }, 700);   
+    }, 700);
 }
 
 function toggleButton()

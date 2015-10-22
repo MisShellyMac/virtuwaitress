@@ -1,5 +1,6 @@
 // load up the user model
 var users = require('../models/users');
+var approvedSocialMedia = require('../models/approvedSocialMedia');
 
 module.exports = function(app, passport) {
 
@@ -7,8 +8,12 @@ module.exports = function(app, passport) {
     // MENU PAGE
     // =====================================
     app.get('/menu', function(req, res) {
-      res.render('menu.ejs', {
-          username : req.user === undefined ? "Guest" : req.user.username
+        approvedSocialMedia.getAllApprovedSocialMediaDirectly(function(result) {
+          console.log(result);
+          res.render('menu.ejs', {
+              username : req.user === undefined ? "Guest" : req.user.username,
+              socialMediaItems: result
+          });
       });
     });
 
