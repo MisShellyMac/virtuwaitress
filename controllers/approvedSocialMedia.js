@@ -16,7 +16,7 @@ module.exports = {
     model.createApprovedSocialMediaItem(item, res);
   },
   delete: function(id, res) {
-    model.deleteApprovedSocialMedia(id, res);
+    model.deleteApprovedSocialMediaItem(id, res);
   }
 
 };

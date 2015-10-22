@@ -46,7 +46,7 @@ module.exports = {
 
   createApprovedSocialMediaItem: function(item, res) {
     executeQuery(
-      'INSERT INTO approved_social_media (type, content, username, image_url) ' +
+      'INSERT INTO approved_social_media (type, username, content, image_url) ' +
       'VALUES($1, $2, $3, $4)',
       [item.type, item.content, item.username, item.image_url],
       res,

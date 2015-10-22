@@ -37,9 +37,9 @@
       <table>
           <% liveSocialMediaItems.forEach(function(item) { %>
               <tr>
-                <td><img height="48" src="<%= item.image_url %>"/></td>
-                <td><%= item.type %></td>
-                <td>
+                <td style='padding:2px;vertical-align:middle'><img height='50'><img height="48" src="<%= item.image_url %>"/></td>
+                <td style='padding:10px;vertical-align:middle'><%= item.type %></td>
+                <td style='padding:20px;vertical-align:middle'>
                   <%if (item.type == "twitter") { %>
                     <a href='http://twitter.com/<%= item.username %>'>
                       <%= item.username %>
@@ -62,31 +62,7 @@
     </div>
     <div>
       <h2>Approved Social Media</h2>
-      <table>
-          <% liveSocialMediaItems.forEach(function(item) { %>
-              <tr>
-                <td><img height="48" src="<%= item.image_url %>"/></td>
-                <td><%= item.type %></td>
-                <td>
-                  <%if (item.type == "twitter") { %>
-                    <a href='http://twitter.com/<%= item.username %>'>
-                      <%= item.username %>
-                    </a>
-                  <% } %>
-                  <%if (item.type == "instagram") { %>
-                    <a href='http://instagram.com/<%= item.username %>'>
-                      <%= item.username %>
-                    </a>
-                  <% } %>
-                </td>
-                <td><%= item.text %></td>
-                <td>
-                  <button class="delete"
-                  onClick="deleteApprovedSocialMediaItem('<%= item.type %>','<%= item.text %>','<%= item.username %>','<%= item.image_url %>')"/>
-                </td>
-              </tr>
-          <% }); %>
-      </table>
+      <div id="list"></div>
     </div>
 
   <script type="text/x-handlebars" data-template-name="foods/index">
@@ -199,10 +175,10 @@
                 }}
               </td>
               <td>
-                {{edit-item class="edit" value=newTitle placeholder="TITLE"}}
-                {{edit-item class="edit" value=newPrice placeholder="PRICE"}}
-                {{edit-item class="edit" value=newDescription placeholder="DESCRIPTION"}}
-                {{edit-item class="edit" value=newImage placeholder="IMAGE URL (/img/menu/...)"}}
+                {{add-item class="edit" value=newTitle placeholder="TITLE"}}
+                {{add-item class="edit" value=newPrice placeholder="PRICE"}}
+                {{add-item class="edit" value=newDescription placeholder="DESCRIPTION"}}
+                {{add-item class="edit" value=newImage placeholder="IMAGE URL (/img/menu/...)"}}
               </td>
               <td style="min-width:104px">
                 <label>{{input type='checkbox' checked=newVegan}} Vegan</label>
@@ -228,6 +204,7 @@
   <script src="js/emberModels/food.js"></script>
   <script src="js/emberControllers/foodsController.js"></script>
   <script src="js/emberControllers/foodController.js"></script>
+  <script src="js/emberViews/addItemView.js"></script>
   <script src="js/emberViews/editItemView.js"></script>
 
   <script src="js/dashboard.js"></script>
