@@ -7,8 +7,6 @@ var assert = require('assert'),
 describe("Food Controller Methods", function(){
 
   it("can do something", function(done){
-    var food = Food.getAllFood();
-    console.log(food);
     done();
   });
 });

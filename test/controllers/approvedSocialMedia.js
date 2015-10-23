@@ -2,11 +2,12 @@
 
 var assert = require('assert'),
     pg = require('pg'),
-    Food = require('../../models/food');
+    Food = require('../../controllers/approvedSocialMedia');
 
-describe("Food Model Methods", function(){
+describe("approvedSocialMedia Controller Methods", function(){
+
   it("can do something", function(done){
 
     done();
-    });
   });
+});

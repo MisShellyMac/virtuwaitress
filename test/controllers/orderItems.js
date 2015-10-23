@@ -2,11 +2,12 @@
 
 var assert = require('assert'),
     pg = require('pg'),
-    Food = require('../../models/food');
+    User = require('../../controllers/orderItems');
 
-describe("Food Model Methods", function(){
+describe("orderItems Controller Methods", function(){
+
   it("can do something", function(done){
 
     done();
-    });
   });
+});
