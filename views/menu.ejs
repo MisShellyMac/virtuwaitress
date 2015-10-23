@@ -601,37 +601,35 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Check us out on Social Media!</h2>
+                    <center>
                     <div class="row">
                       <% socialMediaItems.forEach(function(item) { %>
-                        <div class="col-md-4 col-sm-6 menu-item"  style="background-color:white;width:300px;margin-left:40px">
+                        <div class="col-md-4 col-sm-6 menu-item"  style="background-color:white;width:300px;height:150px;margin-left:60px">
                           <div class="menu-caption">
                               <h4><%= item.content %></h4>
                           </div>
                           <div style="float:left">
                             <%if (item.type == "twitter") { %>
-                              <i style="color:gray;font-size:50px" class="fa fa-twitter"></i>
+                              <i style="color:gray;font-size:30px" class="fa fa-twitter"></i>
                             <% } %>
                             <%if (item.type == "instagram") { %>
-                              <i style="color:gray;font-size:50px" class="fa fa-instagram"></i>
+                              <i style="color:gray;font-size:30px" class="fa fa-instagram"></i>
                             <% } %>
-                              </a>
                           </div>
                           <div style="float:right">
                             <%if (item.type == "twitter") { %>
-                              <a href='http://twitter.com/<%= item.username %>' target="_top">
-                                <img src="<%= item.image_url %>" style="height:60px" class="img-responsive img-centered" alt="">
+                                <img src="<%= item.image_url %>" style="height:50px" class="img-responsive img-centered" alt="">
                                 <p style="color:gray"><%= item.username %></p>
                             <% } %>
                             <%if (item.type == "instagram") { %>
-                              <a href='http://instagram.com/<%= item.username %>' target="_top">
-                                <img src="<%= item.image_url %>" style="height:60px" class="img-responsive img-centered" alt="">
+                                <img src="<%= item.image_url %>" style="height:50px" class="img-responsive img-centered" alt="">
                                 <p style="color:gray"><%= item.username %></p>
                             <% } %>
-                              </a>
                           </div>
                         </div>
                       <% }); %>
                     </div>
+                  </center>
             	</div>
 			</div>
 		</div>
