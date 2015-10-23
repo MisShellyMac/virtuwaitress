@@ -35,23 +35,66 @@ module.exports = {
     );
   },
 
-  getAllOrderItems: function(order_id, res) {
+  getAllOrderItems: function(userId, res) {
     executeQuery(
-      'SELECT order_items.id, menu_item_id, title, price, image_url from order_items JOIN menu_items ON menu_item_id=menu_items.id WHERE order_id=$1 ORDER BY id',
-      [order_id],
+      'SELECT order_items.id, menu_item_id, title, price, image_url from order_items JOIN menu_items ON menu_item_id=menu_items.id JOIN orders ON orders.id=order_id WHERE user_id=$1 ORDER BY id',
+      [userId],
       res,
       function(result) { res.status(200).json({ 'orderItems' : result.rows }); }
     );
   },
 
   createOrderItem: function(item, res) {
-    // TODO Check that order is not submitted first
+    // First see if there's already an order we can add to
     executeQuery(
-      'INSERT INTO order_items (menu_item_id, order_id) ' +
-      'VALUES($1, $2)',
-      [item.menu_item_id, item.order_id],
+      'SELECT id from orders WHERE user_id=$1 AND ' +
+      'submitted=FALSE AND paid IS NULL',
+      [item.user_id],
       res,
-      function(result) { res.status(200).json([]); }
+      function(result) {
+        if (result.rows.length > 0)
+        {
+          // We can use this order
+          executeQuery(
+            'INSERT INTO order_items (menu_item_id, order_id) ' +
+            'VALUES($1, $2)',
+            [item.menu_item_id, result.rows[0].id],
+            res,
+            function(result) { res.status(200).json([]); }
+          );
+        }
+        else {
+          // If there's a submitted but unpaid order,
+          // simply reject this request.
+          executeQuery(
+            'SELECT id from orders WHERE user_id=$1 AND ' +
+            'submitted=TRUE AND paid IS NULL',
+            [item.user_id],
+            res,
+            function(result) {
+              if (result.rows.length > 0)
+              {
+                console.log("THERE IS AN UNPAID ORDER");
+                res.status(500).json([]);
+              }
+              else {
+                // Create a new order and then add this to it.
+                executeQuery(
+                  'INSERT INTO orders (user_id, submitted) ' +
+                  'VALUES($1, FALSE)',
+                  [item.user_id],
+                  res,
+                  function(result) {
+                    // Call ourselves recursively to use
+                    // the order we just created
+                    module.exports.createOrderItem(item, res);
+                  }
+                );
+              }
+            }
+          );
+        }
+      }
     );
   },
 

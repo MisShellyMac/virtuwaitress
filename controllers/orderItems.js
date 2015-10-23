@@ -4,12 +4,8 @@ var model = require('../models/orderItems');
 
 module.exports = {
 
-  find: function(id, res) {
-    model.getOrderItem(id, res);
-  },
-
-  findAll: function(order_id, res) {
-    model.getAllOrderItems(order_id, res);
+  findAll: function(userId, res) {
+    model.getAllOrderItems(userId, res);
   },
 
   create: function(item, res) {
