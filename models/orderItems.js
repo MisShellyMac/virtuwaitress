@@ -74,7 +74,7 @@ module.exports = {
             function(result) {
               if (result.rows.length > 0)
               {
-                console.log("THERE IS AN UNPAID ORDER");
+                // There is an unpaid order!
                 res.status(500).json([]);
               }
               else {

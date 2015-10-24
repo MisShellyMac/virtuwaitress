@@ -16,12 +16,16 @@ module.exports = {
     model.createOrder(item, res);
   },
 
-  submit: function(id, res) {
-    model.submit(id, res);
+  submit: function(userId, res) {
+    model.submit(userId, res);
   },
 
   pay: function(id, res) {
     model.pay(id, res);
+  },
+
+  getOrderStatus: function(userId, res) {
+    model.getOrderStatus(userId, res);
   }
 
 };

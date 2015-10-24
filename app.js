@@ -8,6 +8,7 @@ var pg = require('pg');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var food = require('./routes/food');
+var orders = require('./routes/orders');
 var orderItems = require('./routes/orderItems');
 var pay = require('./routes/pay');
 var app = require('express')();
@@ -53,6 +54,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.use('/', index);
 app.use('/users', users);
 app.use('/foods', food);
+app.use('/orders', orders);
 app.use('/orderItems', orderItems);
 app.use('/pay', pay);
 app.use('/approvedSocialMedia', approvedSocialMedia);

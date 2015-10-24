@@ -1,8 +1,10 @@
 $(function() {
+    getOrderStatus();
     refreshList();
 });
 
 var totalWithoutGratuity;
+var orderStatus;
 
 function refreshList()
 {
@@ -33,48 +35,60 @@ function refreshList()
           totalBeforeTax += new Number(items[i].price);
       }
 
-      // Calculate the tax
-      var tax = totalBeforeTax * .095;
+      if (orderStatus == "unsubmitted")
+      {
+        $("#list").append("<tr>");
+        $("#list").append("<td colspan='4'>");
+        $("#list").append("<button onClick='submitOrder()'>Order</button>");
+        $("#list").append("</td>");
+        $("#list").append("</tr>");
+      }
+      else
+      {
+        // Calculate the tax
+        var tax = totalBeforeTax * .095;
 
-      // Tax row
-      $("#list").append("<tr>");
-      $("#list").append("<td></td>");
-      $("#list").append("<td style='padding:10px'>TAX (9.5%)</td>");
-      $("#list").append("<td style='padding:10px;text-align:right'>" + displayAsMoney(tax) + "</td>");
-      $("#list").append("<td></td>");
-      $("#list").append("</tr>");
+        // Tax row
+        $("#list").append("<tr>");
+        $("#list").append("<td></td>");
+        $("#list").append("<td style='padding:10px'>TAX (9.5%)</td>");
+        $("#list").append("<td style='padding:10px;text-align:right'>" + displayAsMoney(tax) + "</td>");
+        $("#list").append("<td></td>");
+        $("#list").append("</tr>");
 
-      totalWithoutGratuity = totalBeforeTax + tax;
+        totalWithoutGratuity = totalBeforeTax + tax;
 
-      // Subtotal row
-      $("#list").append("<tr>");
-      $("#list").append("<td></td>");
-      $("#list").append("<td style='padding:10px'>SUBTOTAL</td>");
-      $("#list").append("<td style='padding:10px;text-align:right'>" + displayAsMoney(totalWithoutGratuity) + "</td>");
-      $("#list").append("<td></td>");
-      $("#list").append("</tr>");
+        // Subtotal row
+        $("#list").append("<tr>");
+        $("#list").append("<td></td>");
+        $("#list").append("<td style='padding:10px'>SUBTOTAL</td>");
+        $("#list").append("<td style='padding:10px;text-align:right'>" + displayAsMoney(totalWithoutGratuity) + "</td>");
+        $("#list").append("<td></td>");
+        $("#list").append("</tr>");
 
-      // Gratuity row
-      var initialTip = (totalBeforeTax + tax) * .15;
-      var initialTipPercentage = "15%";
-      $("#list").append("<tr>");
-      $("#list").append("<td></td>");
-      $("#list").append("<td style='padding:20px'>GRATUITY<br/><button onClick='applyGratuityPercent(.15)'>15%</button> <button onClick='applyGratuityPercent(.18)'>18%</button> <button onClick='applyGratuityPercent(.2)'>20%</button></td>");
-      $("#list").append("<td style='padding:6px'>$<input style='width:60px;text-align:right' value='" + initialTip.toFixed(2) + "' id='gratuity' oninput='applyCustomGratuity(this.value)'></input><br/><p id='actualTipPercent' style='text-align:right;color:gray'>" + initialTipPercentage + "</p></td>");
-      $("#list").append("<td></td>");
-      $("#list").append("</tr>");
+        // Gratuity row
+        var initialTip = (totalBeforeTax + tax) * .15;
+        var initialTipPercentage = "15%";
+        $("#list").append("<tr>");
+        $("#list").append("<td></td>");
+        $("#list").append("<td style='padding:20px'>GRATUITY<br/><button onClick='applyGratuityPercent(.15)'>15%</button> <button onClick='applyGratuityPercent(.18)'>18%</button> <button onClick='applyGratuityPercent(.2)'>20%</button></td>");
+        $("#list").append("<td style='padding:6px'>$<input style='width:60px;text-align:right' value='" + initialTip.toFixed(2) + "' id='gratuity' oninput='applyCustomGratuity(this.value)'></input><br/><p id='actualTipPercent' style='text-align:right;color:gray'>" + initialTipPercentage + "</p></td>");
+        $("#list").append("<td></td>");
+        $("#list").append("</tr>");
 
-      // Total row
-      $("#list").append("<tr>");
-      $("#list").append("<td></td>");
-      $("#list").append("<td style='padding:10px'>GRAND TOTAL</td>");
-      $("#list").append("<td style='padding:10px;text-align:right'><p id='grandTotal'>" + displayAsMoney(totalBeforeTax + tax + initialTip) + "</p></td>");
-      $("#list").append("<td></td>");
-      $("#list").append("</tr>");
+        // Total row
+        $("#list").append("<tr>");
+        $("#list").append("<td></td>");
+        $("#list").append("<td style='padding:10px'>GRAND TOTAL</td>");
+        $("#list").append("<td style='padding:10px;text-align:right'><p id='grandTotal'>" + displayAsMoney(totalBeforeTax + tax + initialTip) + "</p></td>");
+        $("#list").append("<td></td>");
+        $("#list").append("</tr>");
 
-      $("#list").append("</table>");
+        $("#list").append("</table>");
 
-      refreshPayButton(totalBeforeTax + tax + initialTip);
+        alert(orderStatus);
+        refreshPayButton(totalBeforeTax + tax + initialTip);
+      }
   });
 }
 
@@ -138,6 +152,40 @@ function deleteOrderItem(orderItemId)
     );
 }
 
+function getOrderStatus()
+{
+  var id = $("#userId").text();
+
+  if (id == 0)
+  {
+    // Nobody is logged in so there is no status to get
+    return;
+  }
+
+  $.get( "/orders/status/" + id, function(data) {
+      orderStatus = data;
+    });
+}
+
+function submitOrder()
+{
+  var id = $("#userId").text();
+
+  if (id == 0)
+  {
+    // Nobody is logged in so there is no order to submit
+    return;
+  }
+
+    $.ajax({ type: "PUT",
+        url: "/orders/submit/" + id }).done(
+            function() {
+              orderStatus = "submitted";
+              refreshList();
+            }
+    );
+}
+
 function add(menuItemId)
 {
   var id = $("#userId").text();
@@ -148,9 +196,17 @@ function add(menuItemId)
     return;
   }
 
-  $.post( "/orderItems", { orderItem: { menu_item_id: menuItemId, user_id: id } } , function( data ) {
-      refreshList();
-  });
+  $.post( "/orderItems", { orderItem: { menu_item_id: menuItemId, user_id: id } }).done(
+      function() {
+        alert("success");
+        refreshList();
+      }
+    ).fail(
+      function() {
+        alert("fail");
+        refreshList();
+      }
+    );
 }
 
 function refreshPayButton(totalAmount)

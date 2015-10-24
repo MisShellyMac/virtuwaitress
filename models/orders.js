@@ -44,20 +44,20 @@ module.exports = {
     );
   },
 
-  createOrder: function(user_id, res) {
+  createOrder: function(userId, res) {
     executeQuery(
       'INSERT INTO orders (user_id, submitted) ' +
       'VALUES($1, FALSE)',
-      [user_id],
+      [userId],
       res,
       function(result) { res.status(200).json([]); }
     );
   },
 
-  submit: function(id, res) {
+  submit: function(userId, res) {
     executeQuery(
-      'UPDATE orders SET submitted=TRUE WHERE id=$1',
-      [id],
+      'UPDATE orders SET submitted=TRUE WHERE user_id=$1',
+      [userId],
       res,
       function(result) { res.status(200).json([]); }
     );
@@ -69,6 +69,29 @@ module.exports = {
       [id],
       res,
       function(result) { res.status(200).json([]); }
+    );
+  },
+
+  getOrderStatus: function(userId, res) {
+    executeQuery(
+      'SELECT * from orders WHERE user_id=$1 AND (submitted=FALSE OR paid IS NULL)',
+      [userId],
+      res,
+      function(result)
+      {
+        var status = "inactive";
+        if (result.rows.length > 0)
+        {
+          var order = result.rows[0];
+          if (order.submitted == false) {
+            status = "unsubmitted"
+          }
+          else {
+            status = "submitted";
+          }
+        }
+        res.status(200).json(status);
+      }
     );
   }
 
