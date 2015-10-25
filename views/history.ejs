@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <title>Virtuwaitress Dashboard - History</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1>Paid Orders</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        <a href="/" class="btn btn-default btn-sm">Main Page</a>
+        <a href="/admin" class="btn btn-default btn-sm">Dashboard</a>
+        <a href="/signup" class="btn btn-default btn-sm">Add New Table</a>
+    </div>
+
+    <div class="row">
+        <!-- Logged-in admin -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3><span class="fa fa-user"></span> <%= user.username %></h3>
+            </div>
+        </div>
+    </div>
+
+    <div>
+      <h2>Paid Orders</h2>
+      <div id="paidOrders"></div>
+    </div>
+
+  <script src="js/libs/jquery-1.11.2.min.js"></script>
+  <script src="js/history.js"></script>
+</div>
+</body>
+</html>

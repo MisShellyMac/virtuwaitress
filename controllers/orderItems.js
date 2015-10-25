@@ -8,6 +8,10 @@ module.exports = {
     model.getAllOrderItems(userId, res);
   },
 
+  findMostRecentlyPaid: function(userId, res) {
+    model.getMostRecentlyPaid(userId, res);
+  },
+
   create: function(item, res) {
     model.createOrderItem(item, res);
   },

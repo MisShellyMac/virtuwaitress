@@ -2,22 +2,15 @@ var express = require('express');
 var router = express.Router();
 var controller = require('../controllers/orders');
 
-/* TODO unused:
-// Find
-router.get('/:id', function(req, res, next) {
-  return controller.find(req.params.id, res);
+// Get all active orders
+router.get('/active', function(req, res, next) {
+  return controller.findAllActive(res);
 });
 
-// Find All
-router.get('/', function(req, res, next) {
-  return controller.findAll(res);
+// Get all paid orders
+router.get('/paid', function(req, res, next) {
+  return controller.findAllPaid(res);
 });
-
-// Create
-router.post('/', function(req, res, next) {
-  return controller.create(req.body.order, res);
-});
-*/
 
 // An API for submitting an order
 router.put('/submit/:userId', function(req, res, next) {

@@ -37,10 +37,34 @@ module.exports = {
 
   getAllOrderItems: function(userId, res) {
     executeQuery(
-      'SELECT order_items.id, menu_item_id, title, price, image_url from order_items JOIN menu_items ON menu_item_id=menu_items.id JOIN orders ON orders.id=order_id WHERE user_id=$1 ORDER BY id',
+      'SELECT order_items.id, menu_item_id, title, price, image_url from order_items JOIN menu_items ON menu_item_id=menu_items.id JOIN orders ON orders.id=order_id WHERE user_id=$1 AND paid IS NULL ORDER BY id',
       [userId],
       res,
       function(result) { res.status(200).json({ 'orderItems' : result.rows }); }
+    );
+  },
+
+  getMostRecentlyPaid: function(userId, res) {
+    // First get the most recent paid order for this user
+    executeQuery(
+      'SELECT id from orders WHERE user_id=$1 AND paid IS NOT NULL ' +
+      'ORDER BY paid DESC LIMIT 1',
+      [userId],
+      res,
+      function(result) {
+        if (result.rows.length == 0) {
+          res.status(500).json([]);
+          return;
+        }
+
+        // Now get the unique items belonging to this order
+        executeQuery(
+          'SELECT DISTINCT menu_item_id, title, price, image_url from order_items JOIN menu_items ON menu_item_id=menu_items.id WHERE order_id=$1',
+          [result.rows[0].id],
+          res,
+          function(result) { res.status(200).json({ 'orderItems' : result.rows }); }
+        );
+       }
     );
   },
 

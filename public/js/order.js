@@ -86,7 +86,7 @@ function refreshList()
 
         $("#list").append("</table>");
 
-        alert(orderStatus);
+        alert("order status = " + orderStatus);
         refreshPayButton(totalBeforeTax + tax + initialTip);
       }
   });

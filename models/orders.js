@@ -26,18 +26,28 @@ function executeQuery(query, params, res, callback)
 
 module.exports = {
 
-  getOrder: function(id, res) {
+  getAllActiveOrders: function(res) {
     executeQuery(
-      'SELECT * from orders WHERE id=$1',
-      [id],
+      'SELECT submitted, username, menu_items.title, menu_items.price ' +
+      ' from orders ' +
+      ' JOIN users ON user_id=users.id ' +
+      ' JOIN order_items ON order_id=orders.id ' +
+      ' JOIN menu_items ON menu_item_id=menu_items.id ' +
+      ' WHERE paid IS NULL ORDER BY orders.id DESC',
+      [],
       res,
-      function(result) { res.status(200).json({ 'order' : result.rows }); }
+      function(result) { res.status(200).json({ 'orders' : result.rows }); }
     );
   },
 
-  getAllOrders: function(res) {
+  getAllPaidOrders: function(res) {
     executeQuery(
-      'SELECT * from orders ORDER BY date DESC',
+      'SELECT paid, submitted, username, menu_items.title, menu_items.price ' +
+      ' from orders ' +
+      ' JOIN users ON user_id=users.id ' +
+      ' JOIN order_items ON order_id=orders.id ' +
+      ' JOIN menu_items ON menu_item_id=menu_items.id ' +
+      ' WHERE paid IS NOT NULL ORDER BY paid DESC',
       [],
       res,
       function(result) { res.status(200).json({ 'orders' : result.rows }); }
@@ -63,10 +73,10 @@ module.exports = {
     );
   },
 
-  pay: function(id, res) {
+  pay: function(userId, res) {
     executeQuery(
-      'UPDATE orders SET paid=NOW() WHERE id=$1',
-      [id],
+      'UPDATE orders SET paid=NOW() WHERE user_id=$1 AND paid IS NULL',
+      [userId],
       res,
       function(result) { res.status(200).json([]); }
     );

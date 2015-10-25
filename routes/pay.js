@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var ordersController = require('../controllers/orders');
 
 // POST /pay
 router.post('/', function(req, res, next) {
@@ -32,8 +33,14 @@ router.post('/', function(req, res, next) {
     else {
       // The charge was successful
       res.render('paymentSuccess.ejs');
-      // TODO: Direct database call to mark order as paid
-      // req.user.id
+
+      // Use the controller directly.
+      // We don't expose a pay API on the model because
+      // we don't want anyone to be able to call it outside of the
+      // Stripe verification
+
+      //TODO: Fix bug once we have internet
+      ordersController.pay(req.user.id, res);
     }
   });
 

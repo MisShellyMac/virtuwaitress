@@ -4,24 +4,20 @@ var model = require('../models/orders');
 
 module.exports = {
 
-  find: function(id, res) {
-    model.getOrder(id, res);
+  findAllActive: function(res) {
+    model.getAllActiveOrders(res);
   },
 
-  findAll: function(res) {
-    model.getAllOrders(res);
-  },
-
-  create: function(item, res) {
-    model.createOrder(item, res);
+  findAllPaid: function(res) {
+    model.getAllPaidOrders(res);
   },
 
   submit: function(userId, res) {
     model.submit(userId, res);
   },
 
-  pay: function(id, res) {
-    model.pay(id, res);
+  pay: function(userId, res) {
+    model.pay(userId, res);
   },
 
   getOrderStatus: function(userId, res) {

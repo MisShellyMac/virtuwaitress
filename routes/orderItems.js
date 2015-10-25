@@ -7,6 +7,11 @@ router.get('/:userId', function(req, res, next) {
   return controller.findAll(req.params.userId, res);
 });
 
+// Items from the most recent paid order for this user
+router.get('/mostRecentlyPaid/:userId', function(req, res, next) {
+  return controller.findMostRecentlyPaid(req.params.userId, res);
+});
+
 // Create
 router.post('/', function(req, res, next) {
   return controller.create(req.body.orderItem, res);
