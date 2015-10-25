@@ -19,6 +19,16 @@ module.exports = function(app, passport) {
     });
 
     // =====================================
+    // RATING PAGE
+    // =====================================
+    app.get('/rating', function(req, res) {
+      res.render('rating.ejs', {
+          username : req.user === undefined ? "Guest" : req.user.username,
+          user_id : req.user === undefined ? 0 : req.user.id
+      });
+    });
+
+    // =====================================
     // ORDER PAGE
     // =====================================
     app.get('/order', function(req, res) {

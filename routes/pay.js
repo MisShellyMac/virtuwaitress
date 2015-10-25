@@ -31,16 +31,14 @@ router.post('/', function(req, res, next) {
       res.render('paymentFailure.ejs');
     }
     else {
-      // The charge was successful
-      res.render('paymentSuccess.ejs');
-
       // Use the controller directly.
       // We don't expose a pay API on the model because
       // we don't want anyone to be able to call it outside of the
       // Stripe verification
+      ordersController.pay(req.user.id);
 
-      //TODO: Fix bug once we have internet
-      ordersController.pay(req.user.id, res);
+      // The charge was successful
+      res.render('paymentSuccess.ejs');
     }
   });
 

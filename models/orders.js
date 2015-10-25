@@ -73,12 +73,12 @@ module.exports = {
     );
   },
 
-  pay: function(userId, res) {
+  pay: function(userId) {
     executeQuery(
       'UPDATE orders SET paid=NOW() WHERE user_id=$1 AND paid IS NULL',
       [userId],
-      res,
-      function(result) { res.status(200).json([]); }
+      null,
+      function(result) { }
     );
   },
 

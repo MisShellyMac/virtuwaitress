@@ -16,8 +16,8 @@ module.exports = {
     model.submit(userId, res);
   },
 
-  pay: function(userId, res) {
-    model.pay(userId, res);
+  pay: function(userId) {
+    model.pay(userId);
   },
 
   getOrderStatus: function(userId, res) {

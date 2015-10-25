@@ -86,7 +86,6 @@ function refreshList()
 
         $("#list").append("</table>");
 
-        alert("order status = " + orderStatus);
         refreshPayButton(totalBeforeTax + tax + initialTip);
       }
   });
@@ -198,12 +197,10 @@ function add(menuItemId)
 
   $.post( "/orderItems", { orderItem: { menu_item_id: menuItemId, user_id: id } }).done(
       function() {
-        alert("success");
         refreshList();
       }
     ).fail(
       function() {
-        alert("fail");
         refreshList();
       }
     );
