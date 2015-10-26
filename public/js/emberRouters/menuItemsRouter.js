@@ -8,11 +8,6 @@ App.Router.map(function () {
   });
 });
 
-// Prevent Ember from interferring with /#... URLs
-//App.Router.reopen({
-//  location: 'history'
-//});
-
 // "foods" route
 App.FoodsRoute = Ember.Route.extend({
   model: function() {
