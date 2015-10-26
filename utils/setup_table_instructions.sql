@@ -39,7 +39,7 @@ COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, 
        id               serial PRIMARY KEY,
        user_id          int NOT NULL,
        submitted        boolean NOT NULL,
-       paid             date
+       paid             timestamp
    );
 
    DROP TABLE IF EXISTS order_items;

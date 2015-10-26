@@ -38,9 +38,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // For login:
-//TODO: app.use(morgan('dev')); // log every request to the console
-//TODO: app.use(cookieParser()); // read cookies (needed for auth)
-//TODO: app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs'); // set up ejs for templating

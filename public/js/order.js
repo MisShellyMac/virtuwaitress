@@ -1,6 +1,5 @@
 $(function() {
-    getOrderStatus();
-    refreshList();
+  initializeList();
 });
 
 var totalWithoutGratuity;
@@ -35,13 +34,15 @@ function refreshList()
           totalBeforeTax += new Number(items[i].price);
       }
 
-      if (orderStatus == "unsubmitted")
+      if (orderStatus != "submitted")
       {
         $("#list").append("<tr>");
         $("#list").append("<td colspan='4'>");
         $("#list").append("<button onClick='submitOrder()'>Order</button>");
         $("#list").append("</td>");
         $("#list").append("</tr>");
+
+        clearPayButton();
       }
       else
       {
@@ -151,7 +152,7 @@ function deleteOrderItem(orderItemId)
     );
 }
 
-function getOrderStatus()
+function initializeList()
 {
   var id = $("#userId").text();
 
@@ -161,8 +162,11 @@ function getOrderStatus()
     return;
   }
 
+  // First get the order status
   $.get( "/orders/status/" + id, function(data) {
       orderStatus = data;
+      // Now refresh the list
+      refreshList();
     });
 }
 
@@ -222,4 +226,9 @@ function refreshPayButton(totalAmount)
         data-locale='auto'> \
       </script> \
     </form>");
+}
+
+function clearPayButton()
+{
+  $("#payButton").html("");
 }

@@ -26,8 +26,7 @@ function showRatingPane()
           justPaidForItems += "<td>";
           justPaidForItems += "<h4>" + items[i].title + "</h4>";
           justPaidForItems += "</td>";
-          justPaidForItems += "<td>";
-          // TODO: Enable rating
+          justPaidForItems += "<td style='width:233px'>";
           justPaidForItems += "<div>";
           justPaidForItems += "<i style='font-size:50px' onClick='rate(1, " + items[i].menu_item_id + ", this)' class='fa fa-star star-empty hoverglow'></i>";
           justPaidForItems += "<i style='font-size:50px' onClick='rate(2, " + items[i].menu_item_id + ", this)' class='fa fa-star star-empty hoverglow'></i>";

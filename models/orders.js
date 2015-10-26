@@ -75,7 +75,7 @@ module.exports = {
 
   pay: function(userId) {
     executeQuery(
-      'UPDATE orders SET paid=NOW() WHERE user_id=$1 AND paid IS NULL',
+      'UPDATE orders SET paid=current_timestamp WHERE user_id=$1 AND paid IS NULL',
       [userId],
       null,
       function(result) { }
