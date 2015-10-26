@@ -1,7 +1,7 @@
 "use strict";
 
 var pg = require('pg');
-var conString = '"aa1lfz8zz0126ov.cwhoqkhia5qf.us-west-2.rds.amazonaws.com:5432"';
+var conString = "aa1lfz8zz0126ov.cwhoqkhia5qf.us-west-2.rds.amazonaws.com:5432";
 
 function executeQuery(query, params, res, callback)
 {
@@ -21,15 +21,15 @@ function executeQuery(query, params, res, callback)
             client.end();
             callback(result);
         });
-      });  
+      });
 }
 
 module.exports = {
 
   getMenuItem: function(id, res) {
     executeQuery(
-      'SELECT * from menu_items WHERE id=$1', 
-      [id], 
+      'SELECT * from menu_items WHERE id=$1',
+      [id],
       res,
       function(result) { res.status(200).json({ 'food' : result.rows }); }
     );
@@ -37,8 +37,8 @@ module.exports = {
 
   getAllMenuItems: function(res) {
     executeQuery(
-      'SELECT * from menu_items ORDER BY category, title', 
-      [], 
+      'SELECT * from menu_items ORDER BY category, title',
+      [],
       res,
       function(result) { res.status(200).json({ 'foods' : result.rows }); }
     );
@@ -49,7 +49,7 @@ module.exports = {
       'UPDATE menu_items SET title=$1, price=$2, active=$3, ' +
       'vegan=$4, vegetarian=$5, category=$6, gluten_free=$7, ' +
       'description=$8, image_url=$9 ' +
-      'WHERE id=$10', 
+      'WHERE id=$10',
       [item.title, item.price, item.active, item.vegan, item.vegetarian,
        item.category, item.gluten_free, item.description, item.image_url,
        id],
@@ -59,19 +59,19 @@ module.exports = {
   },
 
   createMenuItem: function(item, res) {
-    
+
     if (item.price == null)
       item.price = 0;
     if (item.category == null)
       item.category = "Entree";
-    
+
     item.avg_rating = 0;
     item.total_ratings = 0;
 
     executeQuery(
       'INSERT INTO menu_items (title, price, active, vegan, vegetarian, ' +
       'category, gluten_free, description, image_url, total_ratings, avg_rating) ' +
-      'VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)', 
+      'VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',
       [item.title, item.price, item.active, item.vegan, item.vegetarian,
        item.category, item.gluten_free, item.description, item.image_url,
        item.total_ratings, item.avg_rating],
@@ -82,7 +82,7 @@ module.exports = {
 
   deleteMenuItem: function(id, res) {
     executeQuery(
-      'DELETE FROM menu_items WHERE id=$1', 
+      'DELETE FROM menu_items WHERE id=$1',
       [id],
       res,
       function(result) { res.status(200).json([]); }
@@ -91,7 +91,7 @@ module.exports = {
 
   rateMenuItem: function(id, rating, res) {
     executeQuery(
-      'SELECT * from menu_items WHERE id=$1', 
+      'SELECT * from menu_items WHERE id=$1',
       [id],
       res,
       function(result) {
@@ -99,7 +99,7 @@ module.exports = {
         var avg = result.rows[0].avg_rating;
 
         var totalStars = avg * total;
-        
+
         // Increment the total # of ratings
         total = total + 1;
 
@@ -109,13 +109,13 @@ module.exports = {
         // Update the database
         executeQuery(
           'UPDATE menu_items SET total_ratings=$1, avg_rating=$2 ' +
-          'WHERE id=$3', 
+          'WHERE id=$3',
           [total, avg, id],
           res,
           function(result) { res.status(200).json([]); }
-        );        
+        );
       }
     );
   }
-  
+
 };
