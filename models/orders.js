@@ -42,7 +42,7 @@ module.exports = {
 
   getAllPaidOrders: function(res) {
     executeQuery(
-      'SELECT paid, submitted, username, menu_items.title, menu_items.price ' +
+      'SELECT orders.id, paid, username, menu_items.title, menu_items.price ' +
       ' from orders ' +
       ' JOIN users ON user_id=users.id ' +
       ' JOIN order_items ON order_id=orders.id ' +
@@ -50,7 +50,7 @@ module.exports = {
       ' WHERE paid IS NOT NULL ORDER BY paid DESC',
       [],
       res,
-      function(result) { res.status(200).json({ 'orders' : result.rows }); }
+      function(result) { res.status(200).json({ 'orderItems' : result.rows }); }
     );
   },
 
