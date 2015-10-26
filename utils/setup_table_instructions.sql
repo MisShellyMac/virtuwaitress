@@ -1,4 +1,4 @@
-CREATE Database virtuwaitress;
+CREATE DATABASE virtuwaitress;
 DROP TABLE IF EXISTS menu_items;
 CREATE TABLE menu_items (
      id               serial PRIMARY KEY,
