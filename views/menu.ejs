@@ -63,18 +63,13 @@
                         <a class="page-scroll" href="#social">Social Media</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#rateModal"
-                          onClick="showRatingPane()"
-                         class="menu-link" data-toggle="modal">TODO rate</a>
-                    </li>
-                    <li>
                         <a href="#callButtonModal" class="menu-link" data-toggle="modal"
                             onclick="turnButtonOff()">
                             Call Button
                         </a>
                     </li>
                     <li>
-                      <a><%= username %></a>
+                      <a href="<%= loginOrLogoutLink %>"><%= username %></a>
                       <div id="userId" style="display:none"><%= user_id %></div>
                     </li>
                 </ul>
@@ -120,61 +115,41 @@
                                 <img {{bind-attr src=item.image_url}} style="height:200px"  class="img-responsive img-centered" alt="">
                             </a>
                             <div class="menu-caption">
-                                <h4>{{item.title}}</h4>
-                                <center>
-                                    <table width="200px">
-                                        <tr>
-                                            <td width="50%">
-                                                {{#if item.myRatingHas1Star}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has1Star}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs1Star" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs1Star" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas2Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has2Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs2Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs2Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas3Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has3Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs3Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs3Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas4Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has4Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs4Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs4Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas5Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has5Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs5Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs5Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                            </td>
-                                            <td width="50%" style="text-align:right">${{item.price}}</td>
-                                        </tr>
-                                    </table>
-                                </center>
+                              <h4>{{item.title}}</h4>
+                              <center>
+                                <table width="200px">
+                                  <tr>
+                                    <td width="50%">
+                                    {{#if item.has1Star}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has2Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has3Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has4Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has5Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    </td>
+                                    <td width="50%" style="text-align:right">${{item.price}}</td>
+                                  </tr>
+                                </table>
+                              </center>
                             </div>
                         </div>
                     {{/if}}
@@ -198,61 +173,41 @@
                                 <img {{bind-attr src=item.image_url}} style="height:200px"  class="img-responsive img-centered" alt="">
                             </a>
                             <div class="menu-caption">
-                                <h4>{{item.title}}</h4>
-                                <center>
-                                    <table width="200px">
-                                        <tr>
-                                            <td width="50%">
-                                                {{#if item.myRatingHas1Star}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has1Star}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs1Star" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs1Star" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas2Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has2Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs2Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs2Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas3Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has3Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs3Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs3Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas4Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has4Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs4Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs4Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas5Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has5Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs5Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs5Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                            </td>
-                                            <td width="50%" style="text-align:right">${{item.price}}</td>
-                                        </tr>
-                                    </table>
-                                </center>
+                              <h4>{{item.title}}</h4>
+                              <center>
+                                <table width="200px">
+                                  <tr>
+                                    <td width="50%">
+                                    {{#if item.has1Star}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has2Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has3Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has4Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has5Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    </td>
+                                    <td width="50%" style="text-align:right">${{item.price}}</td>
+                                  </tr>
+                                </table>
+                              </center>
                             </div>
                         </div>
                     {{/if}}
@@ -276,61 +231,41 @@
                                 <img {{bind-attr src=item.image_url}} style="height:200px"  class="img-responsive img-centered" alt="">
                             </a>
                             <div class="menu-caption">
-                                <h4>{{item.title}}</h4>
-                                <center>
-                                    <table width="200px">
-                                        <tr>
-                                            <td width="50%">
-                                                {{#if item.myRatingHas1Star}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has1Star}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs1Star" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs1Star" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas2Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has2Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs2Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs2Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas3Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has3Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs3Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs3Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas4Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has4Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs4Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs4Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas5Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has5Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs5Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs5Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                            </td>
-                                            <td width="50%" style="text-align:right">${{item.price}}</td>
-                                        </tr>
-                                    </table>
-                                </center>
+                              <h4>{{item.title}}</h4>
+                              <center>
+                                <table width="200px">
+                                  <tr>
+                                    <td width="50%">
+                                    {{#if item.has1Star}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has2Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has3Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has4Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has5Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    </td>
+                                    <td width="50%" style="text-align:right">${{item.price}}</td>
+                                  </tr>
+                                </table>
+                              </center>
                             </div>
                         </div>
                     {{/if}}
@@ -354,61 +289,41 @@
                                 <img {{bind-attr src=item.image_url}} style="height:200px"  class="img-responsive img-centered" alt="">
                             </a>
                             <div class="menu-caption">
-                                <h4>{{item.title}}</h4>
-                                <center>
-                                    <table width="200px">
-                                        <tr>
-                                            <td width="50%">
-                                                {{#if item.myRatingHas1Star}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has1Star}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs1Star" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs1Star" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas2Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has2Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs2Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs2Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas3Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has3Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs3Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs3Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas4Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has4Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs4Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs4Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas5Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has5Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs5Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs5Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                            </td>
-                                            <td width="50%" style="text-align:right">${{item.price}}</td>
-                                        </tr>
-                                    </table>
-                                </center>
+                              <h4>{{item.title}}</h4>
+                              <center>
+                                <table width="200px">
+                                  <tr>
+                                    <td width="50%">
+                                    {{#if item.has1Star}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has2Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has3Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has4Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has5Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    </td>
+                                    <td width="50%" style="text-align:right">${{item.price}}</td>
+                                  </tr>
+                                </table>
+                              </center>
                             </div>
                         </div>
                     {{/if}}
@@ -443,61 +358,41 @@
                                 <img {{bind-attr src=item.image_url}} style="height:200px"  class="img-responsive img-centered" alt="">
                             </a>
                             <div class="menu-caption">
-                                <h4>{{item.title}}</h4>
-                                <center>
-                                    <table width="200px">
-                                        <tr>
-                                            <td width="50%">
-                                                {{#if item.myRatingHas1Star}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has1Star}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs1Star" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs1Star" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas2Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has2Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs2Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs2Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas3Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has3Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs3Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs3Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas4Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has4Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs4Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs4Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas5Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has5Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs5Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs5Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                            </td>
-                                            <td width="50%" style="text-align:right">${{item.price}}</td>
-                                        </tr>
-                                    </table>
-                                </center>
+                              <h4>{{item.title}}</h4>
+                              <center>
+                                <table width="200px">
+                                  <tr>
+                                    <td width="50%">
+                                    {{#if item.has1Star}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has2Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has3Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has4Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has5Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    </td>
+                                    <td width="50%" style="text-align:right">${{item.price}}</td>
+                                  </tr>
+                                </table>
+                              </center>
                             </div>
                         </div>
                     {{/if}}
@@ -521,61 +416,41 @@
                                 <img {{bind-attr src=item.image_url}} style="height:200px" class="img-responsive img-centered" alt="">
                             </a>
                             <div class="menu-caption">
-                                <h4>{{item.title}}</h4>
-                                <center>
-                                    <table width="200px">
-                                        <tr>
-                                            <td width="50%">
-                                                {{#if item.myRatingHas1Star}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has1Star}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs1Star" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs1Star" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas2Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has2Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs2Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs2Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas3Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has3Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs3Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs3Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas4Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has4Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs4Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs4Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                                {{#if item.myRatingHas5Stars}}
-                                                        <i class="fa fa-star star-mine"></i>
-                                                {{else}}
-                                                    {{#if item.has5Stars}}
-                                                            <i class="fa fa-star star-filled hoverglow" {{action "rateAs5Stars" on="click" }}></i>
-                                                    {{else}}
-                                                            <i class="fa fa-star star-empty hoverglow" {{action "rateAs5Stars" on="click" }}></i>
-                                                    {{/if}}
-                                                {{/if}}
-                                            </td>
-                                            <td width="50%" style="text-align:right">${{item.price}}</td>
-                                        </tr>
-                                    </table>
-                                </center>
+                              <h4>{{item.title}}</h4>
+                              <center>
+                                <table width="200px">
+                                  <tr>
+                                    <td width="50%">
+                                    {{#if item.has1Star}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has2Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has3Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has4Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    {{#if item.has5Stars}}
+                                      <i class="fa fa-star star-filled"></i>
+                                    {{else}}
+                                      <i class="fa fa-star star-empty"></i>
+                                    {{/if}}
+                                    </td>
+                                    <td width="50%" style="text-align:right">${{item.price}}</td>
+                                  </tr>
+                                </table>
+                              </center>
                             </div>
                         </div>
                     {{/if}}

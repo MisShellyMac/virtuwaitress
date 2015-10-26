@@ -1,5 +1,6 @@
 "use strict";
 
+/*
 var assert = require('assert');
 
 describe('Array', function() {
@@ -376,3 +377,4 @@ describe("Color Code Converter API", function() {
 // });
 //
 // app.listen(3000);
+*/

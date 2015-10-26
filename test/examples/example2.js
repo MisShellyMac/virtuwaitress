@@ -1,4 +1,5 @@
 "use strict";
+/*
 var assert = require('assert');
 var request = require('supertest');
 var pg = require('pg');
@@ -93,3 +94,4 @@ describe('Routing', function() {
 //   should.exist(result);
 //   result.bar.should.equal(foo);
 // });
+*/

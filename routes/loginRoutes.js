@@ -11,9 +11,10 @@ module.exports = function(app, passport) {
         approvedSocialMedia.getAllApprovedSocialMediaDirectly(function(result) {
           console.log(result);
           res.render('menu.ejs', {
-              username : req.user === undefined ? "Guest" : req.user.username,
-              user_id : req.user === undefined ? 0 : req.user.id,
-              socialMediaItems: result
+            username : req.user === undefined ? "Guest" : req.user.username,
+            loginOrLogoutLink : req.user === undefined ? "/login" : "/logout",
+            user_id : req.user === undefined ? 0 : req.user.id,
+            socialMediaItems: result
           });
       });
     });

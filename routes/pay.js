@@ -26,7 +26,7 @@ router.post('/', function(req, res, next) {
     source: stripeToken,
     description: "Charge from Cohort Cafe"
   }, function(err, charge) {
-    if (err && err.type === 'StripeCardError') {
+    if (err) {
       // The card has been declined
       res.render('paymentFailure.ejs');
     }
@@ -41,7 +41,6 @@ router.post('/', function(req, res, next) {
       res.render('paymentSuccess.ejs');
     }
   });
-
 });
 
 module.exports = router;
