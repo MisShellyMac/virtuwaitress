@@ -3,12 +3,13 @@ $(function() {
     refreshActiveOrders();
 });
 
-function addSocialMediaItem(type, username, text, image_url)
+function addSocialMediaItem(type, text, username, image_url)
 {
-    $.post( "/approvedSocialMedia", { item:
-      { type: type, content: text, username: username, image_url: image_url } }, function( data ) {
-        refreshApprovedList();
-    });
+  text = decodeURI(text);
+  $.post( "/approvedSocialMedia", { item:
+    { type: type, content: text, username: username, image_url: image_url } }, function( data ) {
+      refreshApprovedList();
+  });
 }
 
 function deleteApprovedSocialMediaItem(itemId)

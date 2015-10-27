@@ -1,8 +1,9 @@
 "use strict";
 
 var pg = require('pg');
-// var conString =
-var conString = 'aa1lfz8zz0126ov.cwhoqkhia5qf.us-west-2.rds.amazonaws.com:5432';
+
+var conString = 'pg://localhost:5432/virtuwaitress';
+// var conString = 'aa1lfz8zz0126ov.cwhoqkhia5qf.us-west-2.rds.amazonaws.com:5432';
 
 function executeQuery(query, params, res, callback)
 {
@@ -49,7 +50,7 @@ module.exports = {
     executeQuery(
       'INSERT INTO approved_social_media (type, username, content, image_url) ' +
       'VALUES($1, $2, $3, $4)',
-      [item.type, item.content, item.username, item.image_url],
+      [item.type, item.username, item.content, item.image_url],
       res,
       function(result) { res.status(200).json([]); }
     );
