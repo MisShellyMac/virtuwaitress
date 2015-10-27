@@ -518,6 +518,8 @@ section h3.section-subheading {
 .menu-item .menu-caption h4 {
     margin: 0;
     text-transform: none;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .menu-item .menu-caption p {
@@ -525,6 +527,8 @@ section h3.section-subheading {
     font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 16px;
     font-style: italic;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 /*
