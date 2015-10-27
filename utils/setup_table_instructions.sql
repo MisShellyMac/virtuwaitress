@@ -14,15 +14,15 @@ CREATE TABLE menu_items (
      avg_rating       decimal NOT NULL
  );
 
-COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, description, image_url, total_ratings, avg_rating) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/dessert.csv' WITH DELIMITER ',' CSV  ;
+# COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, description, image_url, total_ratings, avg_rating) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/dessert.csv' WITH DELIMITER ',' CSV  ;
 
-COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, description, image_url, total_ratings, avg_rating) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/entree.csv' WITH DELIMITER ',' CSV  ;
+# COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, description, image_url, total_ratings, avg_rating) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/entree.csv' WITH DELIMITER ',' CSV  ;
 
-COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, description, image_url, total_ratings, avg_rating) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/appetizer.csv' WITH DELIMITER ',' CSV  ;
+# COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, description, image_url, total_ratings, avg_rating) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/appetizer.csv' WITH DELIMITER ',' CSV  ;
 
-COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, description, image_url, total_ratings, avg_rating) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/salad.csv' WITH DELIMITER ',' CSV  ;
+# COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, description, image_url, total_ratings, avg_rating) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/salad.csv' WITH DELIMITER ',' CSV  ;
 
- COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, description, image_url, total_ratings, avg_rating) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/drink.csv' WITH DELIMITER ',' CSV  ;
+# COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, description, image_url, total_ratings, avg_rating) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/drink.csv' WITH DELIMITER ',' CSV  ;
 
  DROP TABLE IF EXISTS users;
  CREATE TABLE users (
@@ -32,7 +32,7 @@ COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, 
       isAdmin          boolean NOT NULL
   );
 
-  COPY users(username, password, isAdmin) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/users.csv' WITH DELIMITER ',' CSV ;
+#  COPY users(username, password, isAdmin) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/users.csv' WITH DELIMITER ',' CSV ;
 
   DROP TABLE IF EXISTS orders;
   CREATE TABLE orders (
@@ -58,4 +58,4 @@ COPY menu_items(title, price, active, vegan, vegetarian, category, gluten_free, 
        image_url        text
    );
 
-  COPY approved_social_media(type, content, username, image_url) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/approvedSocialMedia.csv' WITH DELIMITER ',' CSV  ;
+#  COPY approved_social_media(type, content, username, image_url) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/approvedSocialMedia.csv' WITH DELIMITER ',' CSV  ;
