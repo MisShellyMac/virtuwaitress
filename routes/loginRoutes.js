@@ -44,9 +44,6 @@ module.exports = function(app, passport) {
     // =====================================
     app.get('/admin', dashboardAuthenticationCheck, function(req, res) {
 
-      var env = require('node-env-file');
-      env(__dirname + "/../secret.env");
-
       var Twitter = require('twitter');
 
       var liveSocialMediaItems = [];
