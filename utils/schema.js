@@ -3,10 +3,9 @@
 var pg = require('pg');
 var fs = require('fs');
 fs.readFile('./utils/setup_table_instructions.sql', 'utf-8', function(err, data){
-  //var conString = 'pg://localhost:5432/virtuwaitress';
-  var conString = 'aa1lfz8zz0126ov.cwhoqkhia5qf.us-west-2.rds.amazonaws.com:5432';
+  var conString = process.env.CONSTRING;
 
-  var client = new pg.Client(connectionString);
+  var client = new pg.Client(conString);
   client.connect (function(err) {
    client.query(data,function(err, result){
      if (err) {

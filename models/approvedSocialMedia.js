@@ -2,8 +2,7 @@
 
 var pg = require('pg');
 
-//var conString = 'pg://localhost:5432/virtuwaitress';
-var conString = 'aa1lfz8zz0126ov.cwhoqkhia5qf.us-west-2.rds.amazonaws.com:5432';
+var conString = process.env.CONSTRING;
 
 function executeQuery(query, params, res, callback)
 {

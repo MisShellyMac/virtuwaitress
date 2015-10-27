@@ -5,7 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore all
-secret.env
+secret.sh
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

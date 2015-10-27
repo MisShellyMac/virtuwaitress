@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
-//var conString = 'pg://localhost:5432/virtuwaitress';
-var conString = 'pg://aa1lfz8zz0126ov.cwhoqkhia5qf.us-west-2.rds.amazonaws.com:5432/virtuwaitress';
+var conString = process.env.CONSTRING;
 
 console.log(conString);
 

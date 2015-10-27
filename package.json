@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
+    "setenv": ". ./secret.sh",
     "test": "clear; DB=test mocha --recursive;",
     "nyan": "clear; DB=test mocha --recursive -R nyan;",
     "reset": "node ./utils/schema",
