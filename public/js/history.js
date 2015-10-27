@@ -37,7 +37,7 @@ function refreshPaidOrders()
       {
         // Info about the order as a whole
         $("#paidOrders").append("<tr>");
-        $("#paidOrders").append("<td><b>" + orders[order].items[0].username + "</b></td>");
+        $("#paidOrders").append("<td><b>" +   orders[order].items[0].username   + "</b></td>");
         $("#paidOrders").append("<td><b>" + orders[order].items[0].paid + "</b></td>");
         $("#paidOrders").append("<td><b>" + displayAsMoney(orders[order].total) + "</b></td>");
         $("#paidOrders").append("</tr>");
