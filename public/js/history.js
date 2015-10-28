@@ -1,8 +1,6 @@
-//var plotly = require('plotly')("misshellymac", ""); //TODO HIDE KEY
-
 $(function() {
     refreshPaidOrders();
-    //showGraph();
+    showGraph();
 });
 
 function refreshPaidOrders()
@@ -78,16 +76,16 @@ function displayDate(date) {
 
 function showGraph()
 {
-  //TODO: Make API call to get data
-  var x = [];
-  for (var i = 0; i < 30; i ++) {
-  	x[i] = Math.random();
-  }
+  // Get the histogram
+  $.get( "/graphs/menuItemHistogram", function(data) {
 
-  var data = [ { x: x, type: "histogram" } ];
-  var graphOptions = {filename: "basic-histogram", fileopt: "overwrite"};
-  plotly.plot(data, graphOptions, function (err, url) {
-    $("#chart").src = url;
-    console.log(url);
+    var tilda = data.url.indexOf('~');
+    var lastSlash = data.url.lastIndexOf('/');
+    var username = data.url.substring(tilda + 1, lastSlash);
+    var graphNumber = data.url.substring(lastSlash + 1);
+
+    $("#graph1").html(
+      '<a href="' + data.url + '" target="_blank" style="display: block; text-align: center;"><img src="' + data.url + '.png" style="max-width: 100%;width: 400px;" width="400"/></a><script data-plotly="' + username + ':' + graphNumber + '" src="https://plot.ly/embed.js" async></script>'
+    );
   });
 }

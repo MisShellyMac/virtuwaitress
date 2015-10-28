@@ -11,6 +11,7 @@ var food = require('./routes/food');
 var orders = require('./routes/orders');
 var orderItems = require('./routes/orderItems');
 var pay = require('./routes/pay');
+var graphs = require('./routes/graphs');
 var app = require('express')();
 var ig = require('instagram-node').instagram();
 var Twitter = require('twitter');
@@ -55,6 +56,7 @@ app.use('/orders', orders);
 app.use('/orderItems', orderItems);
 app.use('/pay', pay);
 app.use('/approvedSocialMedia', approvedSocialMedia);
+app.use('/graphs', graphs);
 
 // load the login-related routes and pass in our app and fully configured passport
 require('./routes/loginRoutes.js')(app, passport);
