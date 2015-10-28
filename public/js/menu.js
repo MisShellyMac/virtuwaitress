@@ -18,7 +18,7 @@ $(function() {
 // Highlight the top nav as scrolling occurs
 $('body').scrollspy({
     target: '.navbar-fixed-top'
-})
+});
 
 // Closes the Responsive Menu on Menu Item Click
 $('.navbar-collapse ul li a').click(function() {
@@ -36,7 +36,7 @@ function addToOrder(menuItemId)
 
 function showOrder()
 {
-    window.frameElement.parentNode.cols = "*,32%";
+    window.frameElement.parentNode.cols = "*,25%";
 }
 
 function hideOrder()
