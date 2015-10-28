@@ -28,7 +28,11 @@ function refreshList()
           $("#list").append("<td style='padding:2px;vertical-align:middle'><img height='50' src='" + items[i].image_url + "'></td>");
           $("#list").append("<td style='padding:20px;vertical-align:middle'>" + items[i].title + "</td>");
           $("#list").append("<td style='padding:10px;vertical-align:middle;text-align:right'>" + displayAsMoney(new Number(items[i].price)) + "</td>");
-          $("#list").append("<td style='vertical-align:middle'><button onClick='deleteOrderItem(" + items[i].id + ")' class='destroy'></button></td>");
+          // Don't provide delete buttons after the order is submitted
+          if (orderStatus != "submitted")
+          {
+            $("#list").append("<td style='vertical-align:middle'><button onClick='deleteOrderItem(" + items[i].id + ")' class='destroy'></button></td>");
+          }
           $("#list").append("</tr>");
 
           totalBeforeTax += new Number(items[i].price);
@@ -36,12 +40,16 @@ function refreshList()
 
       if (orderStatus != "submitted")
       {
-        $("#list").append("<tr>");
-        $("#list").append("<td colspan='4'>");
-        $("#list").append("<button onClick='submitOrder()'>Order</button>");
-        $("#list").append("</td>");
-        $("#list").append("</tr>");
-
+        // Don't show the order button if there are no items
+        // (e.g. the user deleted all items previously added)
+        if (items.length > 0)
+        {
+          $("#list").append("<tr>");
+          $("#list").append("<td colspan='4'>");
+          $("#list").append("<button onClick='submitOrder()'>Order</button>");
+          $("#list").append("</td>");
+          $("#list").append("</tr>");
+        }
         clearPayButton();
       }
       else
@@ -205,6 +213,7 @@ function add(menuItemId)
       }
     ).fail(
       function() {
+        alert("Please pay for your current order before adding new items.");
         refreshList();
       }
     );

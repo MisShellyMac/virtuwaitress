@@ -8,7 +8,7 @@ router.post('/', function(req, res, next) {
   if (req.user === undefined)
   {
     // Nobody is signed in, so this is not a valid request.
-    res.status(500).json([]);
+    res.status(500).json(["No user is logged in."]);
     return;
   }
 
