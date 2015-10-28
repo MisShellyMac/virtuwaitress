@@ -67,7 +67,6 @@ module.exports = function(app, passport) {
         }
         else
         {
-          //  console.log(tweets);
           for (var i = 0; i < tweets.statuses.length; i++)
           {
             var tweet = tweets.statuses[i];
@@ -81,7 +80,6 @@ module.exports = function(app, passport) {
 
           // this will return results searching for the hashtag of the business
           client.get('search/tweets', {q: '#cohortcafe'}, function(error, tweets, response){
-          //  console.log(tweets);
           for (var i = 0; i < tweets.statuses.length; i++)
           {
             var tweet = tweets.statuses[i];
