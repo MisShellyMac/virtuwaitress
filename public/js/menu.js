@@ -36,7 +36,7 @@ function addToOrder(menuItemId)
 
 function showOrder()
 {
-    window.frameElement.parentNode.cols = "*,25%";
+    window.frameElement.parentNode.cols = "*,32%";
 }
 
 function hideOrder()
