@@ -64,7 +64,8 @@ function refreshActiveOrders()
         return;
       }
 
-      $("#activeOrders").html("<table style='margin:10px'>");
+      var activeOrders = "<table style='margin:10px'>";
+      activeOrders += "<tr>";
 
       // Keep track of unique users, and group the menu items under them
       var users = {};
@@ -91,26 +92,35 @@ function refreshActiveOrders()
       for (var user in users)
       {
         // Info about the order as a whole
-        $("#activeOrders").append("<tr>");
-        $("#activeOrders").append("<td><b>" + user + "</b></td>");
-        $("#activeOrders").append("<td><b>" +
+        activeOrders += "<td valign=top>";
+        activeOrders += "<table style='margin:0 40px 0 0'>";
+        activeOrders += "<tr>";
+        activeOrders += "<td colspan='2' style='background-color:darkgray;color:white'><center><h4><b>" + user + "</b></h4></center></td>";
+        activeOrders += "</tr>";
+        activeOrders += "<tr>";
+        activeOrders += "<td style='padding-right:8px'><b>" +
           (users[user].items[0].submitted ? "SUBMITTED" : "IN PROGRESS")
-          + "</b></td>");
-        $("#activeOrders").append("<td><b>" + displayAsMoney(users[user].total) + "</b></td>");
-        $("#activeOrders").append("</tr>");
+          + "</b></td>";
+        activeOrders += "<td><b>" + displayAsMoney(users[user].total) + "</b></td>";
+        activeOrders += "</tr>";
 
         // Info about the items in the order
         for (var j = 0; j < users[user].items.length; j++)
         {
-          $("#activeOrders").append("<tr>");
-          $("#activeOrders").append("<td></td>");
-          $("#activeOrders").append("<td>" + users[user].items[j].title + "</td>");
-          $("#activeOrders").append("<td>" + displayAsMoney(users[user].items[j].price) + "</td>");
-          $("#activeOrders").append("</tr>");
+          activeOrders += "<tr>";
+          activeOrders += "<td style='padding-right:8px'>" + users[user].items[j].title + "</td>";
+          activeOrders += "<td>" + displayAsMoney(users[user].items[j].price) + "</td>";
+          activeOrders += "</tr>";
         }
+
+        activeOrders += "</table>";
+        activeOrders += "</td>";
       }
 
-      $("#activeOrders").append("</table>");
+      activeOrders += "</tr>";
+      activeOrders += "</table>";
+
+      $("#activeOrders").html(activeOrders);
   });
 }
 

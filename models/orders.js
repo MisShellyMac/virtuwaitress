@@ -33,7 +33,7 @@ module.exports = {
       ' JOIN users ON user_id=users.id ' +
       ' JOIN order_items ON order_id=orders.id ' +
       ' JOIN menu_items ON menu_item_id=menu_items.id ' +
-      ' WHERE paid IS NULL ORDER BY orders.id DESC',
+      ' WHERE paid IS NULL ORDER BY users.id',
       [],
       res,
       function(result) { res.status(200).json({ 'orders' : result.rows }); }
