@@ -9,6 +9,10 @@ secret.sh
 privatekey.pem
 csr.pem
 server.crt
+certificate.pem
+chain.crt
+chain.p7s
+chain2.crt
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
