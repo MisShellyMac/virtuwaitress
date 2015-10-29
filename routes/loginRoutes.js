@@ -121,7 +121,7 @@ module.exports = function(app, passport) {
                   type: "instagram",
                   text: gram.caption.text,
                   username: gram.user.username,
-                  image_url: gram.user.profile_picture
+                  image_url: gram.user.profile_picture.replace('http://', 'https://')
                 });
               }
 

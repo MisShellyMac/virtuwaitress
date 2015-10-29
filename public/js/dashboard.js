@@ -33,14 +33,14 @@ function refreshApprovedList()
         {
           var link = "";
           if (items[i].type == "twitter") {
-            link = "http://twitter.com/" + items[i].username;
+            link = "https://twitter.com/" + items[i].username;
           }
           else if (items[i].type == "instagram") {
-            link = "http://instagram.com/" + items[i].username;
+            link = "https://instagram.com/" + items[i].username;
           }
 
           $("#list").append("<tr>");
-          $("#list").append("<td style='padding:2px;vertical-align:middle'><img height='50' src='" + items[i].image_url_https + "'></td>");
+          $("#list").append("<td style='padding:2px;vertical-align:middle'><img height='50' src='" + items[i].image_url + "'></td>");
           $("#list").append("<td style='padding:15px;vertical-align:middle'>" + items[i].type + "</td>");
           $("#list").append("<td style='vertical-align:middle'><a href='" +
           link + "'>" + items[i].username + "</a></td>");

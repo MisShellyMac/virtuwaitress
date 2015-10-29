@@ -47,7 +47,7 @@
                 <td><%= item.text %></td>
                 <td>
                   <button class="publish"
-                  onClick='addSocialMediaItem("<%= item.type %>","<%= encodeURI(item.text) %>","<%= item.username %>","<%= item.image_url_https %>")'/>
+                  onClick='addSocialMediaItem("<%= item.type %>","<%= encodeURI(item.text) %>","<%= item.username %>","<%= item.image_url %>")'/>
                 </td>
               </tr>
           <% }); %>
