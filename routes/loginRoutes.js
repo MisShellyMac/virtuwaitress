@@ -85,7 +85,7 @@ module.exports = function(app, passport) {
               type: "twitter",
               text: tweet.text,
               username: tweet.user.screen_name,
-              image_url_https: tweet.user.profile_image_url_https
+              image_url: tweet.user.profile_image_url_https
             });
           }
 
@@ -99,7 +99,7 @@ module.exports = function(app, passport) {
               type: "twitter",
               text: tweet.text,
               username: tweet.user.screen_name,
-              image_url_https: tweet.user.profile_image_url_https
+              image_url: tweet.user.profile_image_url_https
             });
           }
 

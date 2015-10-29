@@ -499,11 +499,11 @@
                           </div>
                           <div style="float:right">
                             <%if (item.type == "twitter") { %>
-                                <img src="<%= item.image_url_https %>" style="height:50px" class="img-responsive img-centered" alt="">
+                                <img src="<%= item.image_url %>" style="height:50px" class="img-responsive img-centered" alt="">
                                 <p style="color:gray"><%= item.username %></p>
                             <% } %>
                             <%if (item.type == "instagram") { %>
-                                <img src="<%= item.image_url_https %>" style="height:50px" class="img-responsive img-centered" alt="">
+                                <img src="<%= item.image %>" style="height:50px" class="img-responsive img-centered" alt="">
                                 <p style="color:gray"><%= item.username %></p>
                             <% } %>
                           </div>
