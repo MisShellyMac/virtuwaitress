@@ -57,6 +57,13 @@ function refreshActiveOrders()
 {
   // Get the active orders
   $.get( "/orders/active", function(data) {
+
+      if (data.orders.length == 0)
+      {
+        $("#activeOrders").html("There are currently no active orders.");
+        return;
+      }
+
       $("#activeOrders").html("<table style='margin:10px'>");
 
       // Keep track of unique users, and group the menu items under them

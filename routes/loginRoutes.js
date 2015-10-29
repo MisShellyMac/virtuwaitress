@@ -40,9 +40,19 @@ module.exports = function(app, passport) {
     });
 
     // =====================================
-    // ADMIN DASHBOARD PAGE
+    // ADMIN DASHBOARD: MAIN PAGE
     // =====================================
     app.get('/admin', dashboardAuthenticationCheck, function(req, res) {
+      res.render('dashboard.ejs', {
+          user : req.user, // get the user out of session and pass to template
+          message : null
+      });
+    });
+
+    // =====================================
+    // ADMIN DASHBOARD: SOCIAL MEDIA PAGE
+    // =====================================
+    app.get('/socialMedia', dashboardAuthenticationCheck, function(req, res) {
 
       var Twitter = require('twitter');
 
@@ -115,7 +125,7 @@ module.exports = function(app, passport) {
                 });
               }
 
-              res.render('dashboard.ejs', {
+              res.render('socialMedia.ejs', {
                   user : req.user, // get the user out of session and pass to template
                   message : null,
                   liveSocialMediaItems : liveSocialMediaItems
@@ -127,10 +137,19 @@ module.exports = function(app, passport) {
     });
 
     // =====================================
-    // ADMIN HISTORY PAGE
+    // ADMIN DASHBOARD: HISTORY
     // =====================================
     app.get('/history', dashboardAuthenticationCheck, function(req, res) {
       res.render('history.ejs', {
+          user : req.user // get the user out of session and pass to template
+      });
+    });
+
+    // =====================================
+    // ADMIN DASHBOARD: HISTORY
+    // =====================================
+    app.get('/analytics', dashboardAuthenticationCheck, function(req, res) {
+      res.render('analytics.ejs', {
           user : req.user // get the user out of session and pass to template
       });
     });

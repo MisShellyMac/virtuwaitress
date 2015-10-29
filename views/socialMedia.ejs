@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <title>Virtuwaitress Dashboard: Social Media</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1>Virtuwaitress Dashboard: Social Media</h1>
+        <a href="/admin" class="btn btn-default btn-sm">Dashboard Home</a>
+        <a href="/socialMedia" class="btn btn-default btn-sm">Social Media</a>
+        <a href="/history" class="btn btn-default btn-sm">Order History</a>
+        <a href="/analytics" class="btn btn-default btn-sm">Analytics</a>
+        <a href="/signup" class="btn btn-default btn-sm">Add New Table</a>
+        <a href="/" class="btn btn-default btn-sm">Customer View</a>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <!-- Display any important message -->
+    <div style="background-color:red; color:white">
+      <%= message %>
+    </div>
+
+    <div>
+      <h2>Latest Social Media</h2>
+      <table>
+          <% liveSocialMediaItems.forEach(function(item) { %>
+              <tr>
+                <td style='padding:2px;vertical-align:middle'><img height='50'><img height="48" src="<%= item.image_url %>"/></td>
+                <td style='padding:10px;vertical-align:middle'><%= item.type %></td>
+                <td style='padding:20px;vertical-align:middle'>
+                  <%if (item.type == "twitter") { %>
+                    <a href='http://twitter.com/<%= item.username %>'>
+                      <%= item.username %>
+                    </a>
+                  <% } %>
+                  <%if (item.type == "instagram") { %>
+                    <a href='http://instagram.com/<%= item.username %>'>
+                      <%= item.username %>
+                    </a>
+                  <% } %>
+                </td>
+                <td><%= item.text %></td>
+                <td>
+                  <button class="publish"
+                  onClick='addSocialMediaItem("<%= item.type %>","<%= encodeURI(item.text) %>","<%= item.username %>","<%= item.image_url %>")'/>
+                </td>
+              </tr>
+          <% }); %>
+      </table>
+    </div>
+    <div>
+      <h2>Approved Social Media</h2>
+      <div id="list"></div>
+    </div>
+
+  <script src="js/libs/jquery-1.11.2.min.js"></script>
+  <script src="js/dashboard.js"></script>
+</div>
+</body>
+</html>
