@@ -4,8 +4,12 @@ var model = require('../models/graphs');
 
 module.exports = {
 
-  getMenuItemHistogram: function(res) {
-    model.getMenuItemHistogram(res);
+  getMenuItemsByNumOrders: function(res) {
+    model.getMenuItemsByNumOrders(res);
+  },
+
+  getMenuItemsByRatings: function(res) {
+    model.getMenuItemsByRatings(res);
   }
 
 };

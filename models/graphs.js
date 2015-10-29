@@ -28,7 +28,7 @@ function executeQuery(query, params, res, callback)
 
 module.exports = {
 
-  getMenuItemHistogram: function(res) {
+  getMenuItemsByNumOrders: function(res) {
     executeQuery(
       'SELECT title, count(menu_item_id) FROM order_items JOIN menu_items ON menu_item_id=menu_items.id GROUP BY title ORDER BY count DESC',
       [],
@@ -54,7 +54,48 @@ module.exports = {
             type: "bar"
           }
         ];
-        var graphOptions = {filename: "getMenuItemHistogram", fileopt: "overwrite"};
+        var graphOptions = {filename: "getMenuItemsByNumOrders", fileopt: "overwrite"};
+        plotly.plot(data, graphOptions, function (err, result) {
+          if (err != null)
+          {
+            res.status(500).json(err);
+          }
+          else
+          {
+            res.status(200).json(result);
+          }
+        });
+      }
+    );
+  },
+
+  getMenuItemsByRatings: function(res) {
+    executeQuery(
+      'SELECT title, avg_rating FROM menu_items ORDER BY avg_rating DESC',
+      [],
+      res,
+      function(result)
+      {
+        var x = [];
+        var y = [];
+        for (var i = 0; i < result.rows.length; i++)
+        {
+          var limit = 20;
+          var title = result.rows[i].title;
+          if (title.length <= limit)
+            x.push(title);
+          else
+            x.push(title.substring(0, limit) + "...");
+          y.push(result.rows[i].avg_rating);
+        }
+        var data = [
+          {
+            x: x,
+            y: y,
+            type: "bar"
+          }
+        ];
+        var graphOptions = {filename: "getMenuItemsByRatings", fileopt: "overwrite"};
         plotly.plot(data, graphOptions, function (err, result) {
           if (err != null)
           {

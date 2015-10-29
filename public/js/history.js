@@ -1,6 +1,6 @@
 $(function() {
     refreshPaidOrders();
-    showGraph();
+    showGraphs();
 });
 
 function refreshPaidOrders()
@@ -74,10 +74,10 @@ function displayDate(date) {
   return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear() + "  " + strTime;
 }
 
-function showGraph()
+function showGraphs()
 {
-  // Get the histogram
-  $.get( "/graphs/menuItemHistogram", function(data) {
+  // Get graph #1
+  $.get( "/graphs/menuItemsByNumOrders", function(data) {
 
     var tilda = data.url.indexOf('~');
     var lastSlash = data.url.lastIndexOf('/');
@@ -85,6 +85,19 @@ function showGraph()
     var graphNumber = data.url.substring(lastSlash + 1);
 
     $("#graph1").html(
+      '<a href="' + data.url + '" target="_blank" style="display: block; text-align: center;"><img src="' + data.url + '.png" style="max-width: 100%;width: 400px;" width="400"/></a><script data-plotly="' + username + ':' + graphNumber + '" src="https://plot.ly/embed.js" async></script>'
+    );
+  });
+
+  // Get graph #2
+  $.get( "/graphs/menuItemsByRatings", function(data) {
+
+    var tilda = data.url.indexOf('~');
+    var lastSlash = data.url.lastIndexOf('/');
+    var username = data.url.substring(tilda + 1, lastSlash);
+    var graphNumber = data.url.substring(lastSlash + 1);
+
+    $("#graph2").html(
       '<a href="' + data.url + '" target="_blank" style="display: block; text-align: center;"><img src="' + data.url + '.png" style="max-width: 100%;width: 400px;" width="400"/></a><script data-plotly="' + username + ':' + graphNumber + '" src="https://plot.ly/embed.js" async></script>'
     );
   });
