@@ -6,6 +6,9 @@
 
 # Ignore all
 secret.sh
+privatekey.pem
+csr.pem
+server.crt
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

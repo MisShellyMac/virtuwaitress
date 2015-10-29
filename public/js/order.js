@@ -5,6 +5,11 @@ $(function() {
 var totalWithoutGratuity;
 var orderStatus;
 
+function thisFrameIsHidden()
+{
+  return (window.frameElement.parentNode.cols == "*");
+}
+
 function refreshList()
 {
   var id = $("#userId").text();
@@ -17,6 +22,14 @@ function refreshList()
 
   // Get the order items
   $.get( "/orderItems/" + id, function(data) {
+
+      // If there's no active order and this order frame is currently hidden...
+      if (orderStatus != "inactive" && thisFrameIsHidden())
+      {
+        // Show this frame
+        window.frameElement.parentNode.cols = "*,32%";
+      }
+
       $("#list").html("<table style='margin:10px'>");
 
       var totalBeforeTax = 0;
