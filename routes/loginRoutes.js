@@ -77,27 +77,29 @@ module.exports = function(app, passport) {
         }
         else
         {
+          //  console.log(tweets);
           for (var i = 0; i < tweets.statuses.length; i++)
           {
             var tweet = tweets.statuses[i];
             liveSocialMediaItems.push({
               type: "twitter",
               text: tweet.text,
-              username: tweet.user.screen_name
-              // image_url: tweet.user.profile_image_url
+              username: tweet.user.screen_name,
+              image_url: tweet.user.profile_image_url
             });
           }
 
           // this will return results searching for the hashtag of the business
           client.get('search/tweets', {q: '#cohortcafe'}, function(error, tweets, response){
+          //  console.log(tweets);
           for (var i = 0; i < tweets.statuses.length; i++)
           {
             var tweet = tweets.statuses[i];
             liveSocialMediaItems.push({
               type: "twitter",
               text: tweet.text,
-              username: tweet.user.screen_name
-              // image_url: tweet.user.profile_image_url
+              username: tweet.user.screen_name,
+              image_url: tweet.user.profile_image_url
             });
           }
 

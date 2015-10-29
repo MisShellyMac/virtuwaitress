@@ -30,7 +30,7 @@
       <table>
           <% liveSocialMediaItems.forEach(function(item) { %>
               <tr>
-                <!-- <td style='padding:2px;vertical-align:middle'><img height='50'><img height="48" src="<%= item.image_url %>"/></td> -->
+                <td style='padding:2px;vertical-align:middle'><img height='50'><img height="48" src="<%= item.image_url %>"/></td>
                 <td style='padding:10px;vertical-align:middle'><%= item.type %></td>
                 <td style='padding:20px;vertical-align:middle'>
                   <%if (item.type == "twitter") { %>
@@ -47,7 +47,7 @@
                 <td><%= item.text %></td>
                 <td>
                   <button class="publish"
-                  onClick='addSocialMediaItem("<%= item.type %>","<%= encodeURI(item.text) %>","<%= item.username %>")'/>
+                  onClick='addSocialMediaItem("<%= item.type %>","<%= encodeURI(item.text) %>","<%= item.username %>","<%= item.image_url %>")'/>
                 </td>
               </tr>
           <% }); %>
