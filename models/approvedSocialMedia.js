@@ -49,7 +49,7 @@ module.exports = {
     executeQuery(
       'INSERT INTO approved_social_media (type, username, content, image_url) ' +
       'VALUES($1, $2, $3, $4)',
-      [item.type, item.username, item.content, item.image_url],
+      [item.type, item.username, item.content, item.image_url_https],
       res,
       function(result) { res.status(200).json([]); }
     );

@@ -70,9 +70,9 @@
       <tr>
         <td {{bind-attr class="item.isInactive:inactive"}}>
 {{#if item.isEditingImage}}
-          {{edit-item class="edit" value=item.image_url focus-out="acceptChange" insert-newline="acceptChange"}}
+          {{edit-item class="edit" value=item.image_url_https focus-out="acceptChange" insert-newline="acceptChange"}}
 {{else}}
-          <img {{bind-attr src=item.image_url}} class="hoverglow" {{action "editImage" on="click" }} style="height:67px;margin-left:0px" alt="">
+          <img {{bind-attr src=item.image_url_https}} class="hoverglow" {{action "editImage" on="click" }} style="height:67px;margin-left:0px" alt="">
 {{/if}}
         </td>
         <td colspan="2" {{bind-attr class="item.isInactive:inactive"}}>

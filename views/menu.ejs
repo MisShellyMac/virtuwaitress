@@ -112,7 +112,7 @@
                                         <i class="fa fa-plus fa-3x"></i>
                                     </div>
                                 </div>
-                                <img {{bind-attr src=item.image_url}} style="height:200px"  class="img-responsive img-centered" alt="">
+                                <img {{bind-attr src=item.image_url_https}} style="height:200px"  class="img-responsive img-centered" alt="">
                             </a>
                             <div class="menu-caption">
                               <h4>{{item.title}}</h4>
@@ -170,7 +170,7 @@
                                         <i class="fa fa-plus fa-3x"></i>
                                     </div>
                                 </div>
-                                <img {{bind-attr src=item.image_url}} style="height:200px"  class="img-responsive img-centered" alt="">
+                                <img {{bind-attr src=item.image_url_https}} style="height:200px"  class="img-responsive img-centered" alt="">
                             </a>
                             <div class="menu-caption">
                               <h4>{{item.title}}</h4>
@@ -228,7 +228,7 @@
                                         <i class="fa fa-plus fa-3x"></i>
                                     </div>
                                 </div>
-                                <img {{bind-attr src=item.image_url}} style="height:200px"  class="img-responsive img-centered" alt="">
+                                <img {{bind-attr src=item.image_url_https}} style="height:200px"  class="img-responsive img-centered" alt="">
                             </a>
                             <div class="menu-caption">
                               <h4>{{item.title}}</h4>
@@ -286,7 +286,7 @@
                                         <i class="fa fa-plus fa-3x"></i>
                                     </div>
                                 </div>
-                                <img {{bind-attr src=item.image_url}} style="height:200px"  class="img-responsive img-centered" alt="">
+                                <img {{bind-attr src=item.image_url_https}} style="height:200px"  class="img-responsive img-centered" alt="">
                             </a>
                             <div class="menu-caption">
                               <h4>{{item.title}}</h4>
@@ -355,7 +355,7 @@
                                         <i class="fa fa-plus fa-3x"></i>
                                     </div>
                                 </div>
-                                <img {{bind-attr src=item.image_url}} style="height:200px"  class="img-responsive img-centered" alt="">
+                                <img {{bind-attr src=item.image_url_https}} style="height:200px"  class="img-responsive img-centered" alt="">
                             </a>
                             <div class="menu-caption">
                               <h4>{{item.title}}</h4>
@@ -413,7 +413,7 @@
                                         <i class="fa fa-plus fa-3x"></i>
                                     </div>
                                 </div>
-                                <img {{bind-attr src=item.image_url}} style="height:200px" class="img-responsive img-centered" alt="">
+                                <img {{bind-attr src=item.image_url_https}} style="height:200px" class="img-responsive img-centered" alt="">
                             </a>
                             <div class="menu-caption">
                               <h4>{{item.title}}</h4>
@@ -499,11 +499,11 @@
                           </div>
                           <div style="float:right">
                             <%if (item.type == "twitter") { %>
-                                <img src="<%= item.image_url %>" style="height:50px" class="img-responsive img-centered" alt="">
+                                <img src="<%= item.image_url_https %>" style="height:50px" class="img-responsive img-centered" alt="">
                                 <p style="color:gray"><%= item.username %></p>
                             <% } %>
                             <%if (item.type == "instagram") { %>
-                                <img src="<%= item.image_url %>" style="height:50px" class="img-responsive img-centered" alt="">
+                                <img src="<%= item.image_url_https %>" style="height:50px" class="img-responsive img-centered" alt="">
                                 <p style="color:gray"><%= item.username %></p>
                             <% } %>
                           </div>
@@ -578,7 +578,7 @@
                                     <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                                 </div>
                                 <br/>
-                                <img class="img-responsive img-centered" {{bind-attr src=item.image_url}} alt="">
+                                <img class="img-responsive img-centered" {{bind-attr src=item.image_url_https}} alt="">
                             </div>
                         </div>
                     </div>
