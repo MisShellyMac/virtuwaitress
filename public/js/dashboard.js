@@ -3,11 +3,11 @@ $(function() {
     refreshActiveOrders();
 });
 
-function addSocialMediaItem(type, text, username, image_url)
+function addSocialMediaItem(type, text, username, image_url_https)
 {
   text = decodeURI(text);
   $.post( "/approvedSocialMedia", { item:
-    { type: type, content: text, username: username, image_url: image_url } }, function( data ) {
+    { type: type, content: text, username: username, image_url_https: image_url_https } }, function( data ) {
       refreshApprovedList();
   });
 }
@@ -40,7 +40,7 @@ function refreshApprovedList()
           }
 
           $("#list").append("<tr>");
-          $("#list").append("<td style='padding:2px;vertical-align:middle'><img height='50' src='" + items[i].image_url + "'></td>");
+          $("#list").append("<td style='padding:2px;vertical-align:middle'><img height='50' src='" + items[i].image_url_https + "'></td>");
           $("#list").append("<td style='padding:15px;vertical-align:middle'>" + items[i].type + "</td>");
           $("#list").append("<td style='vertical-align:middle'><a href='" +
           link + "'>" + items[i].username + "</a></td>");

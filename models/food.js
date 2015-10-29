@@ -51,7 +51,7 @@ module.exports = {
       'description=$8, image_url=$9 ' +
       'WHERE id=$10',
       [item.title, item.price, item.active, item.vegan, item.vegetarian,
-       item.category, item.gluten_free, item.description, item.image_url_https,
+       item.category, item.gluten_free, item.description, item.image_url,
        id],
       res,
       function(result) { res.status(200).json([]); }
@@ -73,7 +73,7 @@ module.exports = {
       'category, gluten_free, description, image_url, total_ratings, avg_rating) ' +
       'VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',
       [item.title, item.price, item.active, item.vegan, item.vegetarian,
-       item.category, item.gluten_free, item.description, item.image_url_https,
+       item.category, item.gluten_free, item.description, item.image_url,
        item.total_ratings, item.avg_rating],
       res,
       function(result) { res.status(200).json([]); }

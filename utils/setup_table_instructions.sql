@@ -55,7 +55,7 @@ COPY users(username, password, isAdmin) FROM '/Users/MisShellyMac/ada/virtuwaitr
        type             text NOT NULL,
        content          text,
        username         text NOT NULL,
-       image_url        text
+       image_url_https  text
    );
 
-COPY approved_social_media(type, content, username, image_url) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/approvedSocialMedia.csv' WITH DELIMITER ',' CSV  ;
+COPY approved_social_media(type, content, username, image_url_https) FROM '/Users/MisShellyMac/ada/virtuwaitress/utils/approvedSocialMedia.csv' WITH DELIMITER ',' CSV  ;
