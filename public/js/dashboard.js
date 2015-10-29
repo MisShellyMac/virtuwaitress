@@ -3,11 +3,11 @@ $(function() {
     refreshActiveOrders();
 });
 
-function addSocialMediaItem(type, text, username, image_url_https)
+function addSocialMediaItem(type, text, username, image_url)
 {
   text = decodeURI(text);
   $.post( "/approvedSocialMedia", { item:
-    { type: type, content: text, username: username, image_url_https: image_url_https } }, function( data ) {
+    { type: type, content: text, username: username, image_url: image_url_https } }, function( data ) {
       refreshApprovedList();
   });
 }
