@@ -31,22 +31,31 @@ function refreshPaidOrders()
         }
       }
 
+      // Reverse the orders so the latest are first
+      var ordersArray = []
+
       for (var order in orders)
+      {
+        // Insert at the beginning
+        ordersArray.splice(0, 0, orders[order]);
+      }
+
+      for (var i = 0; i < ordersArray.length; i++)
       {
         // Info about the order as a whole
         $("#paidOrders").append("<tr>");
-        $("#paidOrders").append("<td style='padding:5px;background-color:darkgray;color:white'><b>" + orders[order].items[0].username + "</b></td>");
-        $("#paidOrders").append("<td style='padding:5px;background-color:darkgray;color:white'><b>" + displayDate(new Date(orders[order].items[0].paid)) + "</b></td>");
-        $("#paidOrders").append("<td style='padding:5px;background-color:darkgray;color:white'><b>" + displayAsMoney(orders[order].total) + "</b></td>");
+        $("#paidOrders").append("<td style='padding:5px;background-color:darkgray;color:white'><b>" + ordersArray[i].items[0].username + "</b></td>");
+        $("#paidOrders").append("<td style='padding:5px;background-color:darkgray;color:white'><b>" + displayDate(new Date(ordersArray[i].items[0].paid)) + "</b></td>");
+        $("#paidOrders").append("<td style='padding:5px;background-color:darkgray;color:white'><b>" + displayAsMoney(ordersArray[i].total) + "</b></td>");
         $("#paidOrders").append("</tr>");
 
         // Info about the items in the order
-        for (var j = 0; j < orders[order].items.length; j++)
+        for (var j = 0; j < ordersArray[i].items.length; j++)
         {
           $("#paidOrders").append("<tr>");
           $("#paidOrders").append("<td></td>");
-          $("#paidOrders").append("<td style='padding:5px'>" + orders[order].items[j].title + "</td>");
-          $("#paidOrders").append("<td style='padding:5px'>" + displayAsMoney(orders[order].items[j].price) + "</td>");
+          $("#paidOrders").append("<td style='padding:5px'>" + ordersArray[i].items[j].title + "</td>");
+          $("#paidOrders").append("<td style='padding:5px'>" + displayAsMoney(ordersArray[i].items[j].price) + "</td>");
           $("#paidOrders").append("</tr>");
         }
       }
